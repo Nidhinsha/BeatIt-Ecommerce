@@ -1,0 +1,224 @@
+{{!-- new product view page --}}
+{{!-- add to cart success message --}}
+<div class="container">
+
+    <div class="d-flex justify-content-between mb-5">
+        <div>
+
+            <div>
+                <div class="col-md-4 px-0" id="img-container" style="width: 400px;">
+                    <img id="image" src="{{products.image.[0]}}" class="img-fluid">
+                </div>
+
+            </div>
+            <div class="d-flex mt-3">
+                {{!-- {{#each products}} --}}
+                <div class="col-md-2 me-3 px-0 ">
+                    <button class="border-0" onclick="changeImage('img0')">
+                        <img src="{{products.image.[0]}}" class="img-fluid" id="img0" width="100">
+                    </button>
+                </div>
+                <div class="col-md-2 me-3 px-0 ">
+                    <button class="border-0" onclick="changeImage('img1')">
+                        <img src="{{products.image.[1]}}" class="img-fluid" id="img1" width="100">
+                    </button>
+                </div>
+                <div class="col-md-2 me-3 px-0">
+                    <button class="border-0" onclick="changeImage('img2')">
+                        <img src="{{products.image.[2]}}" class="img-fluid" id="img2" width="100">
+                    </button>
+                </div>
+                <div class="col-md-2 me-3 px-0">
+                    <button class="border-0" onclick="changeImage('img3')">
+                        <img src="{{products.image.[3]}}" class="img-fluid" id="img3" width="100">
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        {{!-- item is added to cart --}}
+        <div class="position-fixed w-25 d-none " id="success"
+            style="left:530px; background-color: black; border-radius:10px">
+            <p class="text-center mt-3" style="color: white;">Product Added to Cart</p>
+        </div>
+        <div class="position-fixed w-25 d-none " id="success-wishlist"
+            style="left:530px; background-color: black; border-radius:10px">
+            <p class="text-center mt-3" style="color: white;">Product Added to wishlist</p>
+        </div>
+        <div class="my-5">
+            <div class="mb-3">
+                <div class="text-decor h2">{{products.product_name}}</div>
+            </div>
+            {{#if products.currentOffer}}
+            <div class="text-decor h3"><s class="text-danger">{{products.actualPrice}}</s><span
+                    class="text-success">&nbsp;({{products.currentOffer}}% OFF)</span></div>
+            <div class="text-success">${{products.offerPrice}} </div>
+
+            {{else}}
+           <div class="text-decor h3"> {{products.actualPrice}}</div>
+            <figcaption class="text-danger">No Offer </figcaption>
+
+            {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
+            {{/if}}
+            {{!-- <div class="mb-3">
+                <div class="text-decor h3">$<s style="color: red;">{{products.actualPrice}}</s></div>
+            </div>
+            <div class="mb-3">
+                <div class="text-success h3">${{products.offerPrice}}({{products.productOffer}}%)</div>
+            </div> --}}
+
+            {{!-- <div class="mb-3">
+                <div class="text-decor h3">₹{{this.offer-price}}</div>
+            </div> --}}
+            <div class="rating">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                </svg>
+            </div>
+            <div class="my-3" style="width: 30rem;">
+                <div class=""><b>{{products.brand}}</b></div>
+            </div>
+            <div class="my-2" style="width: 30rem;">
+                <div class=""><b>{{products.category}}</b></div>
+            </div>
+            <div class="my-3" style="width: 30rem;">
+                <div class="">{{products.description}}</div>
+            </div>
+            {{!-- {{/each}} --}}
+            {{!-- <div class="col-sm-3 mb-4">
+                <span class="text-decor">Qty:</span>
+                <div class="input-group">
+
+                    <span class="input-group-prepend">
+                        <button type="button" class="btn btn-outline-secondary btn-number" disabled="disabled"
+                            data-type="minus" data-field="quant[1]">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus"
+                            data-field="quant[1]">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+
+            </div> --}}
+
+            <div>
+                <div class="d-flex">
+                    {{#if user}}
+                    <button onclick="addToWishlist('{{products._id}}')" class="btn btn-outline-dark btn-lg me-3"
+                        style="border-radius: 0;">Add to Wishlist</button>
+
+                    <button onclick="addToCart('{{products._id}}')" class="btn btn-dark btn-lg"
+                        style="border-radius: 0;">Add to Cart</button>
+                    {{else}}
+                    <button type="button" class="btn btn-outline-dark btn-lg me-3" data-bs-toggle="modal"
+                        style="border-radius: 0;" data-bs-target="#signInModal" data-bs-whatever="@mdo">Add to
+                        Wishlist</button>
+
+                    <button type="button" class="btn btn-outline-dark btn-lg me-3" data-bs-toggle="modal"
+                        style="border-radius: 0;" data-bs-target="#signInModal" data-bs-whatever="@mdo">Add to
+                        cart</button>
+
+
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+</div>
+
+{{!-- MODAL FOR SIGN --}}
+{{!-- <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <section>
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center ">
+
+                        <div class="card bg-dark text-white" style="border-radius: 0rem;">
+                            <div class="card-body p-5 text-center">
+                                <form id="login-form" method="post">
+                                    <div class="invalid-feedback ms-5 d-block">
+
+                                    </div>
+                                    {{#if loginChecker}}
+                                    <div>{{loginChecker}}</div>
+                                    {{/if}}
+                                    <div class="mb-md-5 mt-md-4 pb-5">
+
+                                        <h2 class="fw-bold mb-2 text-uppercase text-white">Login</h2>
+                                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                                        <div class="invalid-feedback ms-5 d-block"></div>
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="email" class="form-control form-control-lg" id="email"
+                                                placeholder="Your Email" name="email" />
+                                            <label class="form-label" for="typeEmailX">Email</label>
+                                        </div>
+
+                                        <div class="invalid-feedback ms-5 d-block"></div>
+
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="password" class="form-control form-control-lg" id="password"
+                                                placeholder="Password" name="password" />
+                                            <label class="form-label" for="typePasswordX">Password</label>
+
+                                        </div>
+
+                                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/otp_verify">Login
+                                                With OTP</a>
+                                        </p>
+
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+
+
+                                    </div>
+
+
+                                    <div>
+                                        <p class="mb-0 text-white">Don't have an account? <a href="/user_registration"
+                                                class="text-white-50 fw-bold">Sign
+                                                Up</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div> --}}

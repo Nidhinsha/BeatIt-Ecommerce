@@ -1,0 +1,13 @@
+{{#each products}}
+<div class="product product-1 ">
+
+    <a href="/product-view/{{this._id}}">
+        <figure> <img src="/product-images/{{this.product._id}}/{{this.products._id}}_0.png" alt="product-image" style="height: 300px; ">
+            <figcaption>{{this.product.product_name}}</figcaption>
+            {{!-- <figcaption><s>{{this.product.price}}</s></figcaption> --}}
+            <figcaption>${{this.products.price}}</figcaption>
+        </figure>
+    </a>
+
+</div>
+{{/each}}

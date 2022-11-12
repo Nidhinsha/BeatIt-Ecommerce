@@ -1,0 +1,103 @@
+
+<section>
+    <div class="container" >
+       
+        {{!-- <div class="d-flex align-items-center mb-4">
+            <div class="text-decor h6">Offers</div>
+        </div> --}}
+
+        <div class="me-3 w-100 mt-5">
+            <button class="btn btn-dark btn-outline-block " data-bs-toggle="modal" data-bs-target="#add-coupons">
+                <i class="fas fa-plus me-3"></i>
+                Add Coupons
+            </button>
+            <table class="table table-striped mt-3" id="category-offer">
+                <thead>
+                    <tr>
+                        <th>Coupons</th>
+                        <th>offer %</th>
+                        <th>Min Price</th>
+                         <th>Max Price</th>
+                        
+                        <th>Expiry Date</th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each coupons}}
+                    <tr id="{{this._id}}">
+                        <td>{{this.coupon}}</td>
+                        <td>{{this.percentage}}</td>
+                        <td>{{this.minPrice}}</td>
+                        <td>{{this.maxPrice}}</td>
+                        <td>{{this.expiryDate}}</td>
+                        <td style="font-size: 16px;">
+                            {{!-- <a class="me-3" onclick="editCategoryOffer()"><i class="fas fa-pen-square"
+                                    style="color: blue;"></i></a> --}}
+                            <a onclick="deleteCoupon('{{this._id}}')" class="btn btn-block btn-danger">DELETE</a>
+                        </td>
+                        {{!-- <td>
+                            <button class="btn btn-dark btn-block"> View User</button>                          
+                        </td> --}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="add-coupons" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="add-coupons-Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="order-md-1">
+                            <h4 class="mb-3">Add Coupons</h4>
+
+                            <form class="needs-validation" method="post" id="add-coupon-form" novalidate="">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="coupon-code"
+                                        placeholder="Enter coupon code" name="coupon" value="" required="">
+                                    <div class="invalid-feedback"> Please enter coupon code. </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="coupon-percentage"
+                                        placeholder="Enter coupon offer in %" name="percentage" value="" required="">
+                                    <div class="invalid-feedback"> Please enter coupon offer. </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="coupon-minimumOffer"
+                                        placeholder="Enter minimum price for this coupon" name="minPrice" value=""
+                                        required="">
+                                    <div class="invalid-feedback"> Please enter minimum price. </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="coupon-minimumOffer"
+                                        placeholder="Enter maximum price for this coupon" name="maxPrice" value=""
+                                        required="">
+                                    <div class="invalid-feedback"> Please enter maximum price. </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="coupon-expirydate">Expiry Date</label>
+                                    <input type="date" class="form-control bg-light" id="coupon-expirydate"
+                                        placeholder="expirydate" name="expiryDate" value="" required="">
+                                    <div class="invalid-feedback"> Please enter expirydate. </div>
+                                </div>
+
+                                <hr class="mb-4">
+                                <button class="btn btn-outline-dark btn-lg btn-block w-100" type="submit">Add
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</section>

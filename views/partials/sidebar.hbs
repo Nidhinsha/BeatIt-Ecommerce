@@ -1,0 +1,106 @@
+
+
+{{!-- new header for user --}}
+
+{{!-- new user head --}}
+<header class="p-3 mb-3 border-bottom bg-dark">
+    <div class="container " style="max-width: 100%;">
+        {{!-- <nav class="navbar navbar-dark bg-dark"> --}}
+
+
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <div class="logo nav-common">
+                    <h2 class="success" style="color: white;">Admin</h2>
+                </div>
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                </a>
+
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-between mb-md-0">
+                    {{!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li> --}}
+                    {{!-- <li><a href="/" class="nav-link px-2 link-light">HOME</a></li> --}}
+                    <!-- Example single danger button -->
+                    <div class="btn-group m-2">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            dashboard
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/admin_panel/dashboard">dashboard</a></li>
+                            {{!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+                        </ul>
+                    </div>
+                    <div class="btn-group m-2">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            product
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/admin_panel/products">List product</a></li>
+                            <li><a class="dropdown-item" href="/admin/admin_panel/products/add_product">ADD PRODUCT</a></li>
+                            <li><a class="dropdown-item" href="#">EDIT PRODUCT</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group m-2">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            order
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/admin_panel/orders">LIST ORDERS</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group m-2">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            user
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/admin_panel/list_user">LIST USER</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group m-2">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            management
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/admin_panel/category-management">category</a></li>
+                            <li><a class="dropdown-item" href="/admin/admin_panel/payment-management"> payment</a></li>
+                            <li><a class="dropdown-item" href="/admin/admin_panel/sales-report"> Sale-Report</a></li>
+                            <li><a class="dropdown-item" href="/admin/admin_panel/offers">Offer</a></li>
+                            <li><a class="dropdown-item" href="/admin/admin_panel/coupon">Coupon</a></li>
+                             <li><a class="dropdown-item" href="/admin/admin_panel/banner">banner</a></li>
+                        </ul>
+                    </div>
+                </ul>
+
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="dropdown-center justify-content-end">
+                    <button class="btn  dropdown-toggle btn-light " type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        ADMIN
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+                    </ul>
+                </div>
+
+                <div class="cart nav-icon nav-common">
+                </div>
+            </div>
+
+    </div>
+</header>

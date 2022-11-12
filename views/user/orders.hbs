@@ -1,0 +1,156 @@
+{{!-- ===================================nav bar ================================ --}}
+{{!--
+<nav class="nav nav-borders" style="justify-content: space-evenly;">
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/profile">Profile</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/addressBook">Address</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/orders">My Orders</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/wishlist">My Wishlist</a>
+</nav>
+<hr> --}}
+
+<div class="btn-group btn-group-toggle w-25  mt-3 ms-5 mb-2 sales ">
+  <a href="/profile" class="btn   btn-outline-dark " style="border-radius: 3px;"> Profile</a>
+  <a href="/addressBook" class="btn  btn-outline-dark ">Address</a>
+  <a href="/orders" class="btn   btn-outline-dark ">Orders</a>
+  <a href="/wishlist" class="btn  btn-outline-dark ">Wishlist</a>
+  {{!-- <button id="daily" onclick="salesReport(1,'daily')">Daily</button>
+  <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
+  <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
+  <button id="yearly" class="btn btn-dark " onclick="salesReport(365,'yearly')">Yearly</button>
+</div> --}}
+<hr class="mt-1">
+</div>
+
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card" style="border-radius: 10px;">
+          <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">{{user.firstname}}</span>!
+            </h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: #a8729a;">Orders</p>
+              <p class="small text-muted mb-0"></p>
+            </div>
+            <div class="card shadow-0 border mb-4">
+
+
+              {{#each response}}
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-md-2">
+                    <img src="{{this.product.image.[0]}}" class="img-fluid" alt="Phone">
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0">{{this.product.product_name}}</p>
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">{{this.product.category}}</p>
+                  </div>
+                  {{!-- <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">{{this.product.description}}</p>
+                  </div> --}}
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">{{this.quantity}}</p>
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">₹{{this.product.offerPrice}}</p>
+                  </div>
+                </div>
+                {{!-- {{/each}} --}}
+                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                <div class="row d-flex align-items-center">
+                  {{!-- {{#each orders}} --}}
+                  <div class="row d-flex justify-content-between">
+
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0"><b> Address:</b> <br>{{this.deliveryDetails.address}}
+                        ,{{this.deliveryDetails.landmark}}
+                        {{this.deliveryDetails.streetName}} </p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small"><b>Date:</b> {{this.displayDate}}</p>
+                      {{!-- <p class="text-muted mb-0 small">Date:{{this.displayDate}}</p> --}}
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small"><b>Payment:</b> {{this.paymentMethod}}</p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small" id="{{this._id}}{{this.item}}"><b>Status:</b>{{this.status}}</p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+
+                      {{#ifCheck status 'delivered'}}
+                      {{#ifReturn this.statusUpdateDate}}
+                      <button id="{{this.item}},{{this._id}} " 
+                        class="btn btn-outline-info" onclick="returnOrder('{{this._id}}','{{this.item}}','returned')"
+                        class="btn btn-danger">Return
+                      </button>
+                      {{/ifReturn}}
+                      {{/ifCheck}}
+                      {{#ifCheck status 'canceled'}}
+                      {{/ifCheck}}
+                      {{#ifCheck status 'pending'}}
+                      <button id="{{this.item}}{{this._id}}"
+                        onclick="changeOrderStatus('{{this._id}}','{{this.item}}','canceled')"
+                        class="btn btn-danger">Cancel
+                      </button>
+                      {{/ifCheck}}
+                      {{#ifCheck status 'placed'}}
+                      <button id="{{this.item}}{{this._id}}"
+                        onclick="changeOrderStatus('{{this._id}}','{{this.item}}','canceled')"
+                        class="btn btn-danger">Cancel
+                      </button>
+                      {{/ifCheck}}
+                      {{#ifCheck status 'shipped'}}
+                      <button id="{{this.item}}{{this._id}}"
+                        onclick="changeOrderStatus('{{this._id}}','{{this.item}}','canceled')"
+                        class="btn btn-danger">Cancel
+                      </button>
+                      {{/ifCheck}}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Return Product Form</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+        <div class="input-group flex-nowrap">
+          
+            <span class="input-group-text" id="addon-wrapping">Reason</span>
+          <input type="text" class="form-control" placeholder="Reason for the Return" aria-label=""
+            aria-describedby="addon-wrapping">
+          
+          
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="submit" class="btn btn-outline-dark">Return Product</button>
+      </div>
+    </div>
+  </div>
+</div>

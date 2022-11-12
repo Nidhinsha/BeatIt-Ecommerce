@@ -1,0 +1,97 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title ">Product Table</h4>
+      {{!-- <p class="card-description">
+        Add class <code>.table-striped</code>
+      </p> --}}
+
+      <div class="table-responsive">
+        <table  class="display table-bordered border-dark" id="data" >
+          <thead>
+            <tr>
+              <th>
+                No.
+              </th>
+              <th>
+                User
+              </th>
+              <th>
+                product name
+              </th>
+              <th>
+                category
+              </th>
+              <th>
+                brand
+              </th>
+              <th>
+                stock
+              </th>
+              <th>
+                price
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+           <tbody>
+          {{#each response}}
+         
+
+            <tr>
+              <td>{{inc @index}}</td>
+              <td class="py-1">
+                <img src="{{this.image.[0]}}" alt="image" style="width: 45px; height: 45px"
+                  class="rounded-circle" />
+
+
+
+
+              </td>
+              <td>
+                {{this.product_name}}
+              </td>
+              <td>
+                {{this.category}}
+              </td>
+              <td>
+                {{this.brand}}
+              </td>
+              <td>
+                {{this.stock}}
+                {{!-- <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div> --}}
+              </td>
+              <td>
+                ₹{{this.offerPrice}}
+              </td>
+              <td>
+                <a class="btn btn-primary" href="/admin/admin_panel/products/edit_product/{{this._id}}">edit</a>
+              </td>
+              <td>
+                <a class="btn btn-danger" href="/admin/admin_panel/products/{{this._id}}?_method=DELETE"
+                  onclick="return confirm('Are You Sure You Want To Delete This Product ?')">
+                  Delete</a>
+              </td>
+            </tr>
+          
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ $(document).ready(function () {
+    $('#data').DataTable();
+});
+</script>

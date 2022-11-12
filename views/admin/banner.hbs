@@ -1,0 +1,68 @@
+<p class="d-flex justify-content-center">
+    <a class="btn btn-outline-dark" data-bs-toggle="collapse" href="#collapseExample" role="button"
+        aria-expanded="false" aria-controls="collapseExample">
+        ADD BANNER
+    </a>
+
+</p>
+
+<div class="collapse" id="collapseExample">
+    <form action="/admin/admin_panel/banner" method="post" enctype="multipart/form-data">
+    <div class="d-flex justify-content-center w-50 " style="margin-left: 28%;">
+
+        
+            <div class="card card-body w-50">
+                <div class="mb-4 ">
+                    <label for="formFile" class="form-label" style="font-weight: 600;">Add Banner</label>
+                 
+                    <input class="form-control mt-2" type="file" id="banner1" name="banner1" multiple>
+                    <input class="form-control mt-2" type="file" id="banner2" name="banner2" multiple>
+                    <input class="form-control mt-2" type="file" id="banner3" name="banner3" multiple>
+                    <input class="form-control mt-2" type="file" id="banner4" name="banner4" multiple>
+                    <button type="submit" class="btn btn-outline-dark mt-4">UPLOAD</button>
+                </div>
+            </div>
+       
+    </div>
+     </form>
+</div>
+{{!-- xxxxxxxxxxxxxxx table xxxxxxxxxxxxxxxxxxxxxxxx --}}
+<div class="container">
+    <table class="table table-hover m-4">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Created</th>
+                <th scope="col">Image 1 </th>
+                 <th scope="col">Image 2 </th>
+                  <th scope="col">Image 3 </th>
+                   <th scope="col">Image 4</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each banner}}
+            <tr>
+                <th scope="row">{{inc @index}}</th>
+                <td>{{this.time}}</td>
+                <td>
+  <img src="{{this.image.[0]}}" alt="image" style="width: 45px; height: 45px"
+                  class="rounded-circle" />
+                </td>
+                <td> <img src="{{this.image.[1]}}" alt="image" style="width: 45px; height: 45px"
+                  class="rounded-circle" /></td>
+  
+                <td><img src="{{this.image.[2]}}" alt="image" style="width: 45px; height: 45px"
+                  class="rounded-circle" /></td>
+  
+               
+  
+                <td><img src="{{this.image.[3]}}" alt="image" style="width: 45px; height: 45px"
+                  class="rounded-circle" /></td>
+             
+                <td><a class="btn btn-outline-danger"  onclick="deleteBanner('{{this._id}}')">DELETE</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<form action="/otp_verify" method="post" onsubmit='return otpValidate()' action="/otp_verify">
+    <div class="container height-100 d-flex justify-content-center align-items-center" style="margin: 100px;">
+        <div class="position-relative">
+            <div class="card p-2 text-center">
+                <h6>Please enter the one time password <br>
+                    to verify your account</h6>
+                <div> <span>A code has been sent to your number</span>
+                </div>
+                <div class="invalid-feedback ms-5 d-block">
+                </div>
+                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                    <input class="m-2 text-center form-control rounded" type="hidden" id="first" name="phoneNumber"
+                        value="{{phoneNumber}}" />
+                    <input class="m-2 text-center form-control rounded" type="text" id="code" name="code" />
+                </div>
+                <div class="mt-4"> <button type="submit" class="btn btn-dark px-4 validate">Validate</button> </div>
+            </div>
+            <div class="card-2">
+                <div class="content d-flex justify-content-center align-items-center">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

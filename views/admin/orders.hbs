@@ -1,0 +1,163 @@
+</div>
+<div class="btn-group btn-group-toggle w-25 mt-5 sales">
+  <button id="placed" class="btn btn-primary active d-none" onclick="orderStatus('placed')">placed</button>
+  <button id="pending" class="btn btn-primary d-none" onclick="orderStatus('pending')">pending</button>
+  <button id="shipped" class="btn btn-primary d-none" onclick="orderStatus('shipped')">shipped</button>
+  <button id="delivered" class="btn btn-primary d-none" onclick="orderStatus('delivered')">delivered</button>
+  <button id="canceled" class="btn btn-primary d-none" onclick="orderStatus('canceled')">canceled</button>
+</div>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title ">Order Table</h4>
+      {{!-- <p class="card-description">
+        Add class <code>.table-striped</code>
+      </p> --}}
+
+      <div class="table-responsive">
+        <table class="table table-bordered" id="order">
+          <thead>
+            <tr>
+              <th> No.</th>
+              <th> Customer</th>
+              <th> Adderss</th>
+              <th> Order Date</th>
+              <th>
+                Product
+              </th>
+              <th>
+                Quatity
+              </th>
+              <th>
+                Price
+              </th>
+              <th>
+                Payment
+              </th>
+              <th>
+                Status
+              </th>
+              <th>Action</th>
+            </tr>
+          </thead>
+           
+          <tbody>
+           {{#each response}}
+            <tr>
+              <td>
+                {{inc @index}}
+              </td>
+              <td class="order-data">
+                {{this.deliveryDetails.fullname}}
+              </td>
+              <td class="order-data">
+                {{this.deliveryDetails.address}},{{this.deliveryDetails.landmark}},
+                <br>
+                {{this.deliveryDetails.state}},{{this.deliveryDetails.country}},
+                <br>
+                {{this.deliveryDetails.pincode}}
+              </td>
+              <td class="order-data">{{this.date}}</td>
+              <td class="order-data">{{this.product.product_name}}</td>
+              <td class="order-data">{{this.quantity}}</td>
+              {{!-- <td> --}}
+                {{!-- <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td> --}}
+              <td class="order-data">
+                ₹{{this.totalAmount}}
+              </td>
+
+              <td class="order-data">
+
+                {{this.paymentMethod}}
+
+              </td>
+              <td class="order-data" id="{{this._id}}{{this.product._id}}">
+                {{!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example"> --}}
+                  {{this.status}}
+                  {{!-- <option selected> </option> --}}
+                  {{!-- <option value="1">Placed</option>
+                  <option value="2">Shipped</option>
+                  <option value="3">Delivered</option>
+                </select> --}}
+              </td>
+
+              <td class="order-data">
+                {{#ifCheck status 'pending'}}
+                <select class="form-control" id="{{this.product._id}}{{this._id}}"
+                  onchange="statusChange('{{this.product._id}}','{{this._id}}')" style="width: 90px;">
+                  <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
+                    {{this.status}}</option>
+                  <option value="placed">Placed</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="canceled">Canceled</option>
+                </select>
+                {{/ifCheck}}
+
+                {{#ifCheck status 'placed'}}
+                <select class="form-control" id="{{this.product._id}}{{this._id}}"
+                  onchange="statusChange('{{this.product._id}}','{{this._id}}')" style="width: 90px;">
+                  <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
+                    {{this.status}}</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="canceled">Canceled</option>
+                </select>
+                {{/ifCheck}}
+
+                {{#ifCheck status 'shipped'}}
+                <select class="form-control" id="{{this.product._id}}{{this._id}}"
+                  onchange="statusChange('{{this.product._id}}','{{this._id}}')" style="width: 90px;">
+                  <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
+                    {{this.status}}</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="canceled">Canceled</option>
+                </select>
+                {{/ifCheck}}
+                {{#ifCheck status 'delivered'}}
+                <select class="form-control" id="{{this.product._id}}{{this._id}}"
+                  onchange="statusChange('{{this.product._id}}','{{this._id}}')" style="width: 90px;">
+                  <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
+                    {{this.status}}</option>
+
+                  
+                </select>
+                {{/ifCheck}}
+                {{#ifCheck status 'canceled'}}
+                <select class="form-control" id="{{this.product._id}}{{this._id}}"
+                  onchange="statusChange('{{this.product._id}}','{{this._id}}')" style="width: 90px;">
+                  <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
+                    {{this.status}}</option>
+                </select>
+                {{/ifCheck}}
+              </td>
+            </tr>
+
+
+            
+ {{/each}}
+          </tbody>
+         
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .tab {
+    margin: 0 auto;
+    width: 80%;
+  }
+</style>
+
+<script>
+ $(document).ready(function () {
+    $('#order').DataTable();
+});
+</script>

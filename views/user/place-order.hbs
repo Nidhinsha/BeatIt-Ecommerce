@@ -1,0 +1,504 @@
+<main class="m-3">
+    <div class="py-5 text-center">
+        <h2>Checkout form</h2>
+    </div>
+    {{!-- {{#each total}} --}}
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-dark">Your cart</span>
+                <span class="badge bg-dark rounded-pill">x {{cartCount}}</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Sub Total</span>
+                    <strong>₹{{this.total}}</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div class="text">
+                        <h6 class="my-0">Delivery</h6>
+                        <small class="text-success">Free Delivery</small>
+                    </div>
+                    {{!-- <div class="text-success">
+                        <h6 class="my-0">Delivery</h6>
+                        <small class="text-success">Free Delivery</small>
+                    </div> --}}
+                    <span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                            fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                            <path
+                                d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Coupon</span>
+                    <div class="text-success">
+                        -₹<span id="disPrice">0</span>
+                    </div>
+
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (Rupee)</span>
+                    <strong id="finalPrice">₹{{this.total}}</strong>
+                </li>
+
+            </ul>
+
+            <form class="card p-2" id="redeem-coupon" action="/redeem-coupon">
+                <div><small style="color: red;" id="coupon-condition"></small></div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code" name="coupon">
+                    <button type="submit" class="btn btn-outline-dark">Redeem</button>
+                </div>
+            </form>
+        </div>
+        {{!-- {{/each}} --}}
+        {{!-- start of billing side --}}
+        <div class="col-md-7 col-lg-8">
+
+
+            <button class="btn btn-outline-dark mb-3 ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Add Address</button>
+            <div class="grid m-0">
+                <form action="" id="address-submit" method="post" class="needs-validation" >
+                    {{#each addressData}}
+                    <label class="card m-2" style="width: 100%;">
+                        <input class="radio" type="radio" required checked
+                         name="addressId" onchange="pickAddress('{{this.address._id}}')"  value="{{this.address._id}}">
+                        {{!-- <input type="radio" onchange="pickAddress('{{this.address._id}}')" name="addressId"
+                            class="card-input-element d-none" value="" id="demo1"> --}}
+
+                        <span class="plan-details">
+                            <span class="plan-type mb-2">{{this.address.firstname}}
+                                &nbsp;{{this.address.lastname}}</span>
+
+
+                            <span> {{this.address.address}}
+                                {{this.address.landmark}},{{this.address.streetName}},{{this.address.altnumber}},
+                                {{this.address.pincode}},
+                                {{this.address.city}}
+                                {{this.address.state}},
+                                {{this.address.country}}</span>
+
+
+                    </label>
+                    {{/each}}
+                    {{!-- xxxxxxxxxxxxxxxxx TO SHOW ADDRESS IN THE FORM AND EDIT XXXXXXXXXXXXXXXXXXXXXXXXXX --}}
+                    {{!-- xxxxxxxxxxxxxxxxxx THIS ONE FOR TEMPORARY ADDRESS --}}
+             <div class="row mt-5">
+                <h4 class="mb-2 text-dark">TEMPORARY ADDRESS</h4>
+                <hr>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="firstNameField"
+                                placeholder="First name" name="firstname" value="" required="">
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="lastNameField" placeholder="Last name"
+                                name="lastname" value="" required="">
+                            <div class="invalid-feedback"> Valid last name is required. </div>
+                        </div>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <input type="text" class="form-control " id="addressField" placeholder="Address"
+                            name="address" value="" required="">
+                        <div class="invalid-feedback"> Please enter your address</div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control " id="landmarkField" placeholder="Landmark"
+                            name="landmark" value="" required="">
+                        <div class="invalid-feedback"> Please enter your landmark. </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="altnumberField" name="altnumber"
+                                placeholder="Phone Number" value="" required="">
+                            <div class="invalid-feedback"> Valid Phone Number is required. </div>
+                        </div>
+                       <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control " id="streetNameField" placeholder="Street Name"
+                            name="streetName" value="" required="">
+                        <div class="invalid-feedback"> Please enter your street name. </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{!-- <label for="country">Country</label> --}}
+                            <select class="form-control custom-select d-block w-100 country" id="countryField" 
+                                name="country" required>
+                                <option selected="true" disabled="disabled" value="country" >Country
+                                </option>
+                                <option>India</option>
+                                <option>United States</option>
+                            </select>
+                            <div class="invalid-feedback"> Please select a valid country. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{!-- <label for="state">State</label> --}}
+                            <select class="form-control custom-select d-block w-100 state" id="stateField" name="state"
+                               required>
+                                <option selected="true" disabled="disabled" value="state" >State</option>
+                                <option>Kerala</option>
+                                <option>Tamilnadu</option>
+                                <option>Karnataka</option>
+                                <option>Delhi</option>
+                                <option>Uttar Pradhesh</option>
+                            </select>
+                            <div class="invalid-feedback"> Please provide a valid state. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{!-- <label for="state">City</label> --}}
+                            <select class="form-control custom-select d-block w-100 state" id="cityField" name="city"
+                            
+                                required="">
+                                <option selected="true" disabled="disabled" value="city" >City</option>
+                                <option>kochi</option>
+                                <option>thrissur</option>
+                                <option>kazhimbram</option>
+                               
+                            </select>
+                            <div class="invalid-feedback"> Please provide a valid state. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{!-- <label for="zip">Pincode</label> --}}
+                            <input type="text" class="form-control" id="pincodeField" placeholder="pincode" name="pincode" value=""
+                                required="">
+                            <div class="invalid-feedback"> Pincode required. </div>
+                        </div>
+                    </div> 
+
+                    {{!-- XXXXXXXXXXXXXXXXXXXX THIS IS LAST LINE OF FORM IN ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXX --}}
+
+
+            </div>
+           
+                    {{!--  the user id and address id for temporay  address  --}}
+                    {{!-- <input type="hidden" name="userId" value="{{user._id}}">
+                    <input type="hidden" name="addressId" value=""> --}}
+                    {{!--  the user id and address id for temporay  address  --}}
+              {{!-- xxxxxxxxxxxxxxxxxx THIS ONE FOR TEMPORARY ADDRESS --}}
+            <hr class="my-4">
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="my-3">
+                <div class="form-check">
+                    <input name="paymentMethod" value="COD" id="COD" type="radio" class="form-check-input" checked=""
+                        required="">
+                    <label class="form-check-label" for="credit">Cash On Delivery</label>
+                </div>
+                <div class="form-check">
+                    <input name="paymentMethod" id="razorpay" type="radio" value="razorpay" class="form-check-input"
+                        required="">
+                    <label class="form-check-label" for="debit">RazorPay</label>
+                </div>
+                <div class="form-check">
+                    <input name="paymentMethod" id="paypal" type="radio" value="paypal" class="form-check-input"
+                        required="">
+                    <label class="form-check-label" for="debit">PayPal</label>
+                </div>
+                {{#if wallet.walletBalace}}
+                <div class="form-check">
+                    <input class="form-check-input" name="wallet" type="checkbox" value="{{wallet.walletBalace}}"
+                        id="wallet">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Use Wallet (Rs-{{wallet.walletBalace}})
+                    </label>
+                </div>
+                {{/if}}
+                <input type="hidden" value="{{total}}" name="total" id="totalAmount">
+                {{!-- xxxxxxxxxxxxxx for coupon xxxxxxxxxxxxxxxxxxxxxxxx --}}
+                <input type="hidden" name="nameCoupon" id="isCoupon">
+                {{!-- style=" position: absolute;margin-left: 60%;margin-top: -28%; width: 25%;" --}}
+                <div>
+                    <button class="w-100 btn btn-outline-dark btn-lg mt-3" type="submit">Continue to checkout</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+</main>
+
+{{!-- ========================================== MODAL FORM ==========================================================
+--}}
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADD ADDRESS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" method="post" id="checkout-form" novalidate>
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">First Name*</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="firstname" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Last Name*</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="lastname" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="inputAddress" class="form-label">Address*</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address"
+                            required></textarea>
+                        {{!-- <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"> --}}
+                    </div>
+                    <div class="col-6">
+                        <label for="inputAddress" class="form-label">landmark*</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                            name="landmark" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Number*</label>
+                        <input type="number" class="form-control" id="inputPassword4" name="altnumber" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="inputAddress2" class="form-label">Street Name*</label>
+                        <input type="text" class="form-control" id="inputAddress2"
+                            placeholder="Apartment, studio, or floor" name="streetName" required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="inputCity" class="form-label">Country*</label>
+                        <input type="text" class="form-control" id="inputCity" name="country" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCity" class="form-label">State*</label>
+                        <input type="text" class="form-control" id="inputCity" name="state" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputState" class="form-label">City*</label>
+                        <select id="inputState" class="form-select" name="city" required>
+                            <option selected>Choose...</option>
+                            <option>thrissur</option>
+                            <option>kochi</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputZip" class="form-label">Pincode*</label>
+                        <input type="text" class="form-control" id="inputZip" name="pincode" required>
+                    </div>
+                    {{!-- <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                                Check me out
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div> --}}
+
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="userId" value="{{user._id}}">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline-success">Add Address</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --card-line-height: 1.2em;
+        --card-padding: 1em;
+        --card-radius: 0.5em;
+        --color-green: #141611;
+        --color-gray: #e2ebf6;
+        --color-dark-gray: #c4d1e1;
+        --radio-border-width: 2px;
+        --radio-size: 1.5em;
+    }
+
+    body {
+        background-color: #f2f8ff;
+        color: #263238;
+        font-family: "Noto Sans", sans-serif;
+        margin: 0;
+        padding: 2em 6vw;
+    }
+
+    .grid {
+        display: grid;
+        grid-gap: var(--card-padding);
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 0;
+    }
+
+    @media (min-width: 42em) {
+        .grid {
+            grid-template-columns: repeat(1fr);
+        }
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: var(--card-radius);
+        position: relative;
+    }
+
+    .card:hover {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .radio {
+        font-size: inherit;
+        margin: 0;
+        position: absolute;
+        right: calc(var(--card-padding) + var(--radio-border-width));
+        top: calc(var(--card-padding) + var(--radio-border-width));
+    }
+
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+        .radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff;
+            border: var(--radio-border-width) solid var(--color-gray);
+            border-radius: 50%;
+            cursor: pointer;
+            height: var(--radio-size);
+            outline: none;
+            transition: background 0.2s ease-out, border-color 0.2s ease-out;
+            width: var(--radio-size);
+        }
+
+        .radio::after {
+            border: var(--radio-border-width) solid #fff;
+            border-top: 0;
+            border-left: 0;
+            content: "";
+            display: block;
+            height: 0.75rem;
+            left: 25%;
+            position: absolute;
+            top: 50%;
+            transform: rotate(45deg) translate(-50%, -50%);
+            width: 0.375rem;
+        }
+
+        .radio:checked {
+            background: var(--color-green);
+            border-color: var(--color-green);
+        }
+
+        .card:hover .radio {
+            border-color: var(--color-dark-gray);
+        }
+
+        .card:hover .radio:checked {
+            border-color: var(--color-green);
+        }
+    }
+
+    .plan-details {
+        border: var(--radio-border-width) solid var(--color-gray);
+        border-radius: var(--card-radius);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        padding: var(--card-padding);
+        transition: border-color 0.2s ease-out;
+    }
+
+    .card:hover .plan-details {
+        border-color: var(--color-dark-gray);
+    }
+
+    .radio:checked~.plan-details {
+        border-color: var(--color-green);
+    }
+
+    .radio:focus~.plan-details {
+        box-shadow: 0 0 0 2px var(--color-dark-gray);
+    }
+
+    .radio:disabled~.plan-details {
+        color: var(--color-dark-gray);
+        cursor: default;
+    }
+
+    .radio:disabled~.plan-details .plan-type {
+        color: var(--color-dark-gray);
+    }
+
+    .card:hover .radio:disabled~.plan-details {
+        border-color: var(--color-gray);
+        box-shadow: none;
+    }
+
+    .card:hover .radio:disabled {
+        border-color: var(--color-gray);
+    }
+
+    .plan-type {
+        color: var(--color-green);
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1em;
+    }
+
+    .plan-cost {
+        font-size: 2.5rem;
+        font-weight: bold;
+        padding: 0.5rem 0;
+    }
+
+    .slash {
+        font-weight: normal;
+    }
+
+    .plan-cycle {
+        font-size: 2rem;
+        font-variant: none;
+        border-bottom: none;
+        cursor: inherit;
+        text-decoration: none;
+    }
+
+    .hidden-visually {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+</style>
+<script>
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+</script>
+

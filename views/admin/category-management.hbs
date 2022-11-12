@@ -1,0 +1,44 @@
+
+
+<section>
+    <div class="container" >
+         {{#if message}}
+            <div class="ms-2" style="color: #ff0000; font-size: 14px;">{{message}} </div>
+            {{/if}}
+        {{!-- <div class="title mb-5">
+            <p>Hai, &#128075; Anandhu M S</p>
+        </div>
+        <div class="d-flex align-items-center mb-4">
+            <div class="text-decor">Add Category</div>
+        </div> --}}
+        <h3>Category</h3>
+        <form   id="category-form"  method="post" >
+            <div class="form-row d-flex">
+                <div class="form-floating col-md-4 mb-3">
+                    <input type="text" class="form-control" id="Category_name" name="category"
+                        placeholder="Category Name">
+                    <label for="Category_name">Category Name</label>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-dark btn-block ms-2 h-75">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="text-decor mt-5">Categories</div>
+
+        <ul class="list-group mt-3 w-50" id="category-list">
+            {{#each response}}
+            <li class="list-group-item " > <span id="{{this._id}}">{{this.category}}</span>
+                <a class=" btn btn-outline-danger float-end " href="/admin/admin_panel/category-management/{{this._id}}?_method=DELETE" 
+                style="margin-left: 10px;" onclick="return confirm('Delete this Category!!'')">DELETE
+                </a>
+                <button type="button" class="btn btn-outline-primary float-end" 
+                 onclick="editCategory('{{this._id}}')" >EDIT</button>     
+                
+            </li>
+
+            {{/each}}
+        </ul>
+    </div>
+</section>

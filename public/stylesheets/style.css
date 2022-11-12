@@ -1,0 +1,16 @@
+
+.image-backgorund{
+    background-image: url("../images/login-image.png");
+    border-radius: 25px;
+}
+#sidebar_content {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 40px;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+#table-product{
+    border:5px double black;
+}

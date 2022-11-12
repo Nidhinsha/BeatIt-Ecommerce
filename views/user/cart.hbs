@@ -1,0 +1,123 @@
+<section class="h-100 h-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                    {{!-- <h6 class="mb-0 text-muted">3 items</h6> --}}
+                  </div>
+                  {{#if products}}
+                  {{#each products}}
+                  <hr class="my-4">
+
+                  <div class="row mb-4 d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <img src="{{this.product.image.[0]}}"
+                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <h6 class="text-muted">{{this.product.category}}</h6>
+                      <h6 class="text-black mb-0">{{this.product.product_name}}</h6>
+                    </div>
+
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+
+                      <button class="btn btn-outline-dark btn-block " id="minus{{this.product._id}}"
+                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}','{{this.product.stock}}',-1)"
+                        style="width: 30px; ">-</button>
+
+                      <span id="{{this.product._id}}" style="margin-left: 10px; margin-right: 10px;margin-top: 6px;">{{this.quantity}}</span>
+                      {{!-- <input id="{{this.product._id}}" min="0" name="quantity" value="{{this.quantity}}"
+                        type="number" class="form-control" /> --}}
+                      {{!-- cart-item-count ml-3 --}}
+                      <button class="btn btn-outline-dark" id="plus{{this.product._id}}"
+                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}','{{this.product.stock}}',1)"
+                        style="width: 30px;padding: 0px;">+</button>
+                      {{!-- <button class="btn btn-link px-2"
+                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                        <i class="fas fa-minus"></i>
+                      </button>
+
+                      <input id="form1" min="0" name="quantity" value="1" type="number"
+                        class="form-control form-control-sm" />{{this.quantity}}
+
+                      <button class="btn btn-link px-2"
+                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <i class="fas fa-plus"></i>
+                      </button> --}}
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h6 class="mb-0">₹{{this.product.offerPrice}}</h6>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      {{!-- <a onclick="return confirm('are sure you want to remove this item?')" href="/cart/{{this.product._id}}?_method=DELETE "><i class="fas fa-times"></i></a> --}}
+                     <button style="border: 0; background-color: white;" onclick=" deleteProCart('{{this.product._id}}')"><i class="fas fa-times"></i></button> 
+                      {{!-- <button onclick="return removeProduct({{this.product._id}})"> <i class="fas fa-times"
+                          title="Remove Product"></i></button> --}}
+                      {{!-- <a href="/cart/{{this.product._id}}?_method=DELETE" class="text-muted"></a> --}}
+                    </div>
+
+                  </div>
+                  {{/each}}
+
+                  <hr class="my-4">
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back
+                        to shop</a></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 bg-grey">
+                <div class="p-5">
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                 
+
+                  <hr class="my-4">
+                  {{!-- {{#each totalValue}} --}}
+                  <div class="d-flex justify-content-between mb-5">
+                    <h5 class="text-uppercase">Total</h5>
+
+                    {{!-- <h5><span id="total"> {{this.total}}</span></h5> --}}
+                     <h5><span id="total"> {{totalValue}}</span></h5>
+
+                  </div>
+
+                  <a href="/place-order" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Place
+                    Order</a>
+                  {{!-- {{/each}} --}}
+                </div>
+                {{else}}
+                <div class="container d-flex w-100">
+                  <div class="">
+                    <img class="img-fluid " src="/images/nocart.webp" width="50%" alt="">
+
+                  </div>
+                  
+                  </div>
+                  <div>
+                  </div>
+
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back
+                        to shop</a></h6>
+                  </div>
+                
+                {{/if}}
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

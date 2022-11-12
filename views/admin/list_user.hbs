@@ -1,0 +1,51 @@
+<div class="col-lg-6 grid-margin stretch-card tab">
+    <div class="card ">
+        <div class="card-body">
+            <h4 class="card-title">User Table</h4>
+            <p class="card-description">
+                {{!-- Add class <code>.table-hover</code> --}}
+            </p>
+            <div class="table-responsive ">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Access</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each response}}
+                        <tr>
+                            <td>{{this.firstname}}</td>
+                            <td> {{this.lastname}} </td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.status}}</td>
+                            <td>
+                                <a href="/admin/admin_panel/list_user/{{this._id}}">
+                                    {{#if this.status}}
+                                    <button type="button" class="btn btn-outline-danger">block</button>
+                                    {{else}}
+                                    <button type="button" class="btn btn-outline-success">Unblock</button>
+                                    {{/if}}
+                                </a>
+                            </td>
+
+                            {{/each}}
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .tab {
+        margin: 0 auto;
+        width: 80%;
+    }
+</style>

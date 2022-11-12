@@ -1,0 +1,153 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Beat It Webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <header>
+ <div class="300-px-wide">
+        <div id="header-hero">
+           
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                {{#each banner}}
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="{{this.image.[0]}}" class="d-block w-100 " height="700px" alt="...">
+                    </div>
+                    {{!-- <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{this.image.[1]}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{this.image.[2]}}" class="d-block w-100" alt="...">
+                    </div>
+                </div> --}}
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            </div>
+            {{!-- <div class="header-bg "> <img
+                    src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                    alt="header-image" /> </div> --}}
+            <div class="header-content">
+                <p class="heading-1">fashion collection 2022</p>
+                <h1>welcome to beat <span class="logo-style">it</span> unique store</h1>
+                <p class="description">Shoes that added value to the first impression..</p>
+                <a href="#products" class="btn " style="background-color: #C71585;">shop now </a>
+                {{!-- <div class="button">
+                    <p>shop now</p>
+                </div> --}}
+            </div>
+        </div>
+    </header>
+    <section id="summer-collection">
+        <div class="container">
+            <div class="sc-content">
+                <h1>summer collection</h1>
+                <p class="description">Here at ‘beat it’.
+                    com, we realize that style and prosperity begin
+                    with the correct shoes. We likewise understand that
+                    effectively finding the size and style to meet your
+                    requirements is vital to your web-based shopping knowledge.
+                    Since beginning our web-based business website in 2009,
+                    we’ve been endeavoring to present to you that perfect
+                    hopping experience.</p>
+                <a href="#">discover now</a>
+            </div>
+            <div class="sc-media">
+                <div class="sc-media-bg"> <img
+                        src="{{this.image.[3]}}"
+                        alt="sc-image" /> </div>
+            </div>
+        </div>
+         {{/each}}
+    </section>
+    <section id="products">
+        <div class="container">
+            <div class="products-header">
+                <h2>popular products</h2>
+                <p>Walk the walk in a pair of stylish sports shoes from Beat it</p>
+            </div>
+            <div style="width:100%;">
+                {{#each randomProducts}}
+                <div class="product product-1 ">
+
+                    <a href="/product-view/{{this._id}}">
+                        <figure> <img src="{{this.image.[0]}}" alt="product-image" style="height: 300px; ">
+                            <figcaption>{{this.product_name}}</figcaption>
+
+                            {{!-- {{#if offer}} --}}
+                            
+                            
+                            {{#if this.currentOffer}}
+                            <figcaption><s class="text-danger">{{this.actualPrice}}</s><span class="text-success">&nbsp;({{this.currentOffer}}% OFF)</span></figcaption>
+                            <figcaption class="text-success">${{this.offerPrice}} </figcaption>   
+                            
+                            {{else}}
+                            <figcaption> {{this.actualPrice}}</figcaption>
+                            <figcaption class="text-danger">No Offer  </figcaption>
+                           
+                            {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
+                              {{/if}}
+                            {{!-- {{else}} --}}
+                            {{!-- <figcaption><s>{{this.actualPrice}}</s></figcaption> --}}
+                            
+                          
+                        </figure>
+                    </a>
+
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+    <section id="collections">
+        <div class="container">
+            {{#each banner}}
+            <div class="c-1">
+                <div class="c-1-image-holder"> <img
+                        src=" {{this.image.[3]}}"
+                        alt="image"> </div>
+            </div>
+           
+            <div class="c-2">
+                <h2>featured collection</h2>
+                <hr />
+                <div class="c-2-image-holder"> <img class="left"
+                        src="{{this.image.[1]}}"
+                        alt=""><img class="right"
+                        src="{{this.image.[2]}}"
+                        alt=""></div>
+                <p class="button">view all collections</p>
+            </div>
+        </div>
+{{/each}}
+    </section>
+
+    <footer>
+        <p class="copy-right"><img
+                src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
+                alt="copy right image" /> 2022 all right recived </p>
+        <p>privacy policy</p>
+        <p>license</p>
+    </footer>
+    <div class="back-to-top"><a href="#header-hero"> <img title="Back to Top."
+                src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412541/E-commerce%20landing%20page/icons/back_-_top_1x.png"
+                alt="back to top"></a> </div>
+
+
+
+</body>
+
+</html>

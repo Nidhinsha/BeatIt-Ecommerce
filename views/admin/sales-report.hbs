@@ -1,0 +1,87 @@
+ <div class="container">
+<section>
+   
+        {{!-- <div class="title mb-5">
+            <p>Hai, &#128075; Anandhu M S</p>
+        </div>
+        <div class="d-flex align-items-center mb-4">
+            <div class="text-decor">Sales report</div>
+            <form
+                class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 ms-4 mt-2 align-items-center">
+                <input class="form-control form-control-sm mr-3 w-100" type="text" placeholder="Search"
+                    aria-label="Search">
+                <a href=""><i class="fas fa-search ms-2" aria-hidden="true"></i></a>
+            </form>
+        </div> --}}
+        {{!-- <div class="btn-group btn-group-toggle w-25 mt-5 sales">
+            <button id="daily" class="btn btn-dark active" onclick="salesReport(1,'daily')">Daily</button>
+            <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
+            <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
+            <button id="yearly" class="btn btn-dark " onclick="salesReport(365,'yearly')">Yearly</button>
+        </div> --}}
+        <div class="d-flex ">
+            <form action="/admin/admin_panel/sales-report" method="get">
+                <label for="month">Choose Month</label><br>
+                <input id="month" name="month" type="month">
+                <button style="" class="btn btn-dark" type="submit">Filter</button>
+            </form>
+            <form action="/admin/admin_panel/sales-report" method="get" class="ms-5">
+                <label for="daterange">Choose Date</label><br>
+
+                <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" />
+                <button style="height: 31px; width: 60px;" class="btn btn-dark" type="submit">Filter Date</button>
+            </form>
+        </div>
+        <hr class="mt-1">
+        <div class="text-center" style="padding:20px;">
+            <input type="button" id="rep" value="Download as Pdf" class="btn btn-dark btn_print">
+            <input type="button" onclick="export_data()" value="Export to excel" class="btn btn-success btn_print">
+        </div>
+        <div class="container_content" id="container_content">
+            <div class="invoice-box">
+
+
+                {{!-- new table --}}
+                <table class="table table-striped table-bordered border-primary" id="salesReport">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Order Amount</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Delivered Date</th>
+                            <th scope="col" style="width:100px ;">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each deliveredOrders}}
+                        <tr>
+                            <td scope="col"><strong>{{{inc @index}}}</strong></td>
+                            <td scope="col">{{this._id}}</td>
+                            <td scope="col">{{this.totalAmount}}</td>
+                            <td scope="col">{{this.paymentMethod}}</td>
+                            <td scope="col">{{this.statusUpdateDate}}</td>
+                            <td>{{this.status}}</td>
+                        </tr>                        
+                        {{/each}}
+                        <tfoot >
+                          <tr >
+                            <td colspan="6 " style="text-align: right;font-weight: 700;">  Total Revenue : 
+                                <span  class="text-danger">{{this.revenue}}</span></td>
+                        </tr>
+                        </tfoot>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    
+</section>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#salesReport').DataTable();
+    });
+</script>

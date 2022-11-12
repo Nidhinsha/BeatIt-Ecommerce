@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+
+{{!-- ===================================nav bar ================================ --}}
+
+{{!-- <nav class="nav nav-borders" style="justify-content: space-evenly;">
+    <a class="nav-link" style="color: black; font-weight: 400;" href="/profile">Profile</a>
+    <a class="nav-link" style="color: black; font-weight: 400;" href="/addressBook">Address</a>
+    <a class="nav-link" style="color: black; font-weight: 400;" href="/orders">My Orders</a>
+    <a class="nav-link" style="color: black; font-weight: 400;" href="/wishlist">My Wishlist</a>
+</nav> --}}
+
+<div class="btn-group btn-group-toggle w-25  mt-3 ms-5 mb-2 sales ">
+    <a href="/profile" class="btn   btn-outline-dark " style="border-radius: 3px;"> Profile</a>
+    <a href="/addressBook" class="btn  btn-outline-dark ">Address</a>
+    <a href="/orders" class="btn   btn-outline-dark ">Orders</a>
+    <a href="/wishlist" class="btn  btn-outline-dark ">Wishlist</a>
+    <a href="/wallet" class="btn  btn-outline-dark ">wallet</a>
+    {{!-- <button id="daily" onclick="salesReport(1,'daily')">Daily</button>
+    <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
+    <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
+    <button id="yearly" class="btn btn-dark " onclick="salesReport(365,'yearly')">Yearly</button>
+</div> --}}
+<hr class="mt-1">
+</div>
+
+
+
+<hr class="mt-0 mb-4">
+<div class="row">
+    <section>
+        <div class="container py-5">
+
+
+            <div class="row">
+                <div class="col-lg-8 tab">
+                    <div class="card tab">
+                        <div class="card-body">
+                            <form action="/profile" method="post">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">First Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="firstname" value="{{userName.firstname}}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Last Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="lastname" value="{{userName.lastname}}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="email" value="{{userName.email}}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Mobile</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="mobile" value="{{userName.mobile}}">
+                                    </div>
+                                </div>
+                                 <div class="row mb-3">
+                                    
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" id="id" name="_id" value="{{userName._id}}" hidden>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<style>
+    .tab {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    body {
+        margin-top: 20px;
+
+        color: #69707a;
+    }
+
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+    .card .card-header {
+        font-weight: 500;
+    }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control,
+    .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c5ccd6;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+</style>

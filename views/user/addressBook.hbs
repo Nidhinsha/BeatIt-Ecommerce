@@ -1,0 +1,327 @@
+{{!-- modal --}}
+{{!-- modal --}}
+{{!-- modal --}}
+{{!-- modal --}}
+
+{{!-- ===================================nav bar ================================ --}}
+
+{{!-- <nav class="nav nav-borders" style="justify-content: space-evenly;">
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/profile">Profile</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/addressBook">Address</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/orders">My Orders</a>
+  <a class="nav-link" style="color: black; font-weight: 400;" href="/wishlist">My Wishlist</a>
+</nav>
+<hr> --}}
+<div class="btn-group btn-group-toggle w-25  mt-3 ms-5 mb-2 sales ">
+  <a href="/profile" class="btn   btn-outline-dark " style="border-radius: 3px;"> Profile</a>
+  <a href="/addressBook" class="btn  btn-outline-dark ">Address</a>
+  <a href="/orders" class="btn   btn-outline-dark ">Orders</a>
+  <a href="/wishlist" class="btn  btn-outline-dark ">Wishlist</a>
+  {{!-- <button id="daily" onclick="salesReport(1,'daily')">Daily</button>
+  <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
+  <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
+  <button id="yearly" class="btn btn-dark " onclick="salesReport(365,'yearly')">Yearly</button>
+</div> --}}
+<hr class="mt-1">
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mb-5 mt-4">
+  <button type="button" class="btn btn-outline-dark  justify-content-md-end" data-bs-toggle="modal"
+    data-bs-target="#AddAddressModal" data-bs-whatever="@mdo">CREATE NEW ADDRESS</button>
+</div>
+
+
+{{!-- ======================================================== ADDRESS CARD JUST FOR DISPLAY
+=================================== --}}
+{{#each addressData}}
+<div class="card border-top-dark border-top-3 mb-3 tab" style="max-width: 40rem;">
+  <div class="card-header">Address-1
+    <button class="btn btn-outline-danger ms-2" style="float: right;"
+      onclick="deleteAddress('{{this.address._id}}')">Delete</button>
+
+    <button class="btn btn-outline-primary  " style="float: right;"
+      onclick="editAddress('{{this.address._id}}')">edit</button>
+  </div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">{{this.address.firstname}} {{this.address.lastname }}</h5>
+    <p class="card-text">{{this.address.address}}
+      {{this.address.landmark}},{{this.address.streetName}},{{this.address.altnumber}},
+      {{this.address.pincode}},
+      {{this.address.city}}
+      {{this.address.state}},
+      {{this.address.country}}
+    </p>
+  </div>
+</div>
+{{/each}}
+
+
+
+
+
+
+
+
+
+
+{{!-- ========================================== ADD MODAL FORM
+==========================================================--}}
+<div class="modal fade " id="AddAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD ADDRESS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3 needs-validation"  method="post" id="address-form">
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">First Name*</label>
+            <input type="text" class="form-control" id="inputEmail4" name="firstname" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Last Name*</label>
+            <input type="text" class="form-control" id="inputEmail4" name="lastname" required>
+          </div>
+
+          <div class="col-6">
+            <label for="inputAddress" class="form-label">Address*</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address" required></textarea>
+            {{!-- <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"> --}}
+          </div>
+          <div class="col-6">
+            <label for="inputAddress" class="form-label">landmark*</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="landmark"
+              required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Number*</label>
+            <input type="number" class="form-control" id="inputPassword4" name="altnumber" required>
+          </div>
+
+          <div class="col-6">
+            <label for="inputAddress2" class="form-label">Street Name*</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+              name="streetName" required>
+          </div>
+
+
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Country*</label>
+            <input type="text" class="form-control" id="inputCity" name="country" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">State*</label>
+            <input type="text" class="form-control" id="inputCity" name="state" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">City*</label>
+            <select id="inputState" class="form-select" name="city" required>
+              <option selected>Choose...</option>
+              <option>thrissur</option>
+              <option>kochi</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputZip" class="form-label">Pincode*</label>
+            <input type="text" class="form-control" id="inputZip" name="pincode" required>
+          </div>
+          {{!-- <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div> --}}
+
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="userId" value="{{user._id}}">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-outline-success">Add Address</button>
+
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{{!-- ========================================== MODAL FORM EDIT
+ADDRES========================================================== --}}
+<div class="modal fade " id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">UPDATE ADDRESS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3needs-validation" novalidate method="post" id="address-edit-form" >
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">First Name*</label>
+            <input type="text" class="form-control" id="editFirstName" name="editfirstname" value="" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Last Name*</label>
+            <input type="text" class="form-control" id="editLasttName" name="editlastname" value="" required>
+          </div>
+
+          <div class="col-6">
+            <label for="inputAddress" class="form-label">Address*</label>
+            <textarea class="form-control" id="editaddress" rows="2" name="editaddress" value="" required></textarea>
+            {{!-- <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"> --}}
+          </div>
+          <div class="col-6">
+            <label for="inputAddress" class="form-label">landmark*</label>
+            <input type="text" class="form-control" id="landmark" placeholder="1234 Main St" value=""
+              name="editlandmark" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Number*</label>
+            <input type="number" class="form-control" id="altnumber" name="editaltnumber" value="" required>
+          </div>
+
+          <div class="col-6">
+            <label for="inputAddress2" class="form-label">Street Name*</label>
+            <input type="text" class="form-control" id="editstreetName" value=""
+              placeholder="Apartment, studio, or floor" name="editstreetName" required>
+          </div>
+
+
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Country*</label>
+            <input type="text" class="form-control" id="editcountry" name="editcountry" value="" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">State*</label>
+            <input type="text" class="form-control" id="editstate" name="editstate" value="" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">City*</label>
+            <select id="editcity" class="form-select" name="editcity" value="" required>
+              <option selected>Choose...</option>
+              <option>thrissur</option>
+              <option>kochi</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputZip" class="form-label">Pincode*</label>
+            <input type="text" class="form-control" id="editpincode" name="editpincode" value="" required>
+          </div>
+          {{!-- <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div> --}}
+
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="userId" value="{{user._id}}">
+        <input type="hidden" name="addressId" value="">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-outline-success">Update Address</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<style type="text/css">
+  .tab {
+    margin: 0 auto;
+    width: 80%;
+  }
+</style>
+
+<style>
+  .tab {
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  body {
+    margin-top: 20px;
+
+    color: #69707a;
+  }
+
+  .img-account-profile {
+    height: 10rem;
+  }
+
+  .rounded-circle {
+    border-radius: 50% !important;
+  }
+
+  .card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+  }
+
+  .card .card-header {
+    font-weight: 500;
+  }
+
+  .card-header:first-child {
+    border-radius: 0.35rem 0.35rem 0 0;
+  }
+
+  .card-header {
+    padding: 1rem 1.35rem;
+    margin-bottom: 0;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+  }
+
+  .form-control,
+  .dataTable-input {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #69707a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c5ccd6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .nav-borders .nav-link.active {
+    color: #0061f2;
+    border-bottom-color: #0061f2;
+  }
+
+  .nav-borders .nav-link {
+    color: #69707a;
+    border-bottom-width: 0.125rem;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+</style>
