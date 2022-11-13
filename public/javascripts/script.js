@@ -1,8 +1,8 @@
 
-$("#signup-form").submit((e)=>{
+$("#signup-form").submit((e) => {
     e.preventDefault();
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
-// function signUpValidate() {
+    // function signUpValidate() {
     // const userName=document.getElementById('username')
     const number = document.getElementById('number')
     const email = document.getElementById('email')
@@ -53,28 +53,28 @@ $("#signup-form").submit((e)=>{
         return false;
     }
     $.ajax({
-        url:'/user_registration',
-        type:'post',
-        data:$('#signup-form').serialize(),
-        success:(response)=>{
+        url: '/user_registration',
+        type: 'post',
+        data: $('#signup-form').serialize(),
+        success: (response) => {
             if (response.status) {
-                    // if (isConfirm) {
-                        // location.reload()
-                        $('#signUpModal').modal('hide');
-                        $('#signInModal').modal('show');
-                    
+                // if (isConfirm) {
+                // location.reload()
+                $('#signUpModal').modal('hide');
+                $('#signInModal').modal('show');
+
                 // }
             } else {
                 // if (isConfirm) {
-                    error[1].style.display = "block";
-                    error[1].innerHTML = "Email Already taken";
-                    email.style.border = "2px solid red";
+                error[1].style.display = "block";
+                error[1].innerHTML = "Email Already taken";
+                email.style.border = "2px solid red";
                 // }
             }
         }
     })
 })
-    // return true;
+// return true;
 // }
 
 
@@ -124,43 +124,43 @@ $("#login-form").submit((e) => {
 })
 
 //xxxxxxxxxxxxxxxxxxx MODAL FOR OTP CHECK PHONE NUMBER XXXXXXXXXXXXXXXXXX
-$("#numberVerify").submit((e)=>{
+$("#numberVerify").submit((e) => {
     e.preventDefault()
     // const phoneNumber = document.getElementById('verifyNumber')
     $.ajax({
-        url:'/verifyNumber',
-        method:'post',
-        data:$('#numberVerify').serialize(),
-        success:(response)=>{
+        url: '/verifyNumber',
+        method: 'post',
+        data: $('#numberVerify').serialize(),
+        success: (response) => {
             if (response.msg) {
-                $('#errNumber').css('border-color','red')
+                $('#errNumber').css('border-color', 'red')
                 $('#errNum').text(response.msg)
             } else {
                 $('#otpVerifyModal').modal('show');
                 $('#otpNumberModal').modal('hide');
                 $('#mobNo').text(response.mobile)
                 $('#phnNumber').val(response.mobile)
-                
+
 
             }
         }
     })
 })
 //xxxxxxxxxxxxxxxx VERIFY THE OTP SO IT GO INSIDE THE EWBSITE XXXXXXXXXXXXXXXXX
-$('#verifyCode').submit((e)=>{
+$('#verifyCode').submit((e) => {
     e.preventDefault()
 
     $.ajax({
-        url:'/loginOtp',
-        method:'post',
-        data:$('#verifyCode').serialize(),
-        success:((response)=>{
-            if(response.status){
-                location.href='/'
-            }else{
+        url: '/loginOtp',
+        method: 'post',
+        data: $('#verifyCode').serialize(),
+        success: ((response) => {
+            if (response.status) {
+                location.href = '/'
+            } else {
                 console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
                 // location.href('/')
-                $('#errOTP').css('border-color','red')
+                $('#errOTP').css('border-color', 'red')
                 $('#otpERROR').text(response.errMsg)
             }
 
@@ -319,7 +319,7 @@ function changeQuantity(cartId, proId, userId, stock, count) {
 
             }
         })
-    } 
+    }
     if (quantityCheck == 1) {
         document.getElementById("minus" + proId).classList.add("invisible")
     }
@@ -344,27 +344,27 @@ function deleteProCart(proId) {
         cancelButtonText: "No",
         closeOnConfirm: false,
         closeOnCancel: true
-      },
-      function(isConfirm){
-        if(isConfirm){
-            $.ajax({
-                url:'/delete-cart-product/'+proId,
-                method:'get',
-                success:(response)=>{
-                    if (response) {
-                        location.reload()
+    },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/delete-cart-product/' + proId,
+                    method: 'get',
+                    success: (response) => {
+                        if (response) {
+                            location.reload()
+                        }
                     }
-                }
-            })
+                })
+            }
+
         }
-        
-      }
-      );
+    );
 }
 
 //============================ CHANGE ORDER STATUS IN USER SIDE  ============================================
 
-function changeOrderStatus(orderId, proId,status) {
+function changeOrderStatus(orderId, proId, status) {
     swal({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -400,20 +400,37 @@ function changeOrderStatus(orderId, proId,status) {
     )
 }
 //=========================== CHANGE ORDER STATUS IN TO RETURN IN USER SIDE ==================================
-function returnOrder(orderId, proId,status) {
+function returnOrder(orderId, proId, status) {
     swal({
-        title: 'Are you sure?',
-        text: "You sure you want to return this!",
-        icon: 'warning',
+        title: "Return Form!",
+        text: "The reason for returning:",
+        type: "input",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Return it!',
-        closeOnConfirm: true,
-        closeOnConfirm: true
+        closeOnConfirm: false,
+        animation: "slide-from-top",
+        inputPlaceholder: "Write something",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        // title: 'Are you sure?',
+        // input: 'text',
+        // // text: "You sure you want to return this!",   
+
+        // icon: 'warning',
+        // showCancelButton: true,
+        // confirmButtonColor: '#3085d6',
+        // cancelButtonColor: '#d33',
+        // confirmButtonText: 'Yes, Return it!',
+        // closeOnConfirm: true,
+        // closeOnConfirm: true
     },
-        function (isConfirm) {
-            if (isConfirm) {
+        function (inputValue) {
+            if (inputValue === null) return false;
+
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false
+            }
+            if (inputValue) {
                 $.ajax({
                     url: "/returnOrder",
                     method: "put",
@@ -424,20 +441,41 @@ function returnOrder(orderId, proId,status) {
                     },
                     success: (response) => {
                         if (response.status) {
+                            swal("Thank you! ", "You reason: " + inputValue, "success"); 
                             document.getElementById(orderId + proId).innerHTML = status
                             document.getElementById(proId + orderId).style.display = 'none'
+                           
                         }
 
                     }
                 })
             }
+            // function (isConfirm) {
+            //     if (isConfirm) {
+            //         $.ajax({
+            //             url: "/returnOrder",
+            //             method: "put",
+            //             data: {
+            //                 orderId,
+            //                 proId,
+            //                 status
+            //             },
+            //             success: (response) => {
+            //                 if (response.status) {
+            //                     document.getElementById(orderId + proId).innerHTML = status
+            //                     document.getElementById(proId + orderId).style.display = 'none'
+            //                 }
+
+            //             }
+            //         })
+            //     }
 
         }
     )
 }
 //============================================================= PLACE ORDER ======================================
 $("#checkout-form").submit((e) => {
-    console.log($('#checkout-form').serialize(),'pppppppppppppppppppppppp');
+    console.log($('#checkout-form').serialize(), 'pppppppppppppppppppppppp');
     e.preventDefault()
     console.log('checkout-form ajax');
     $.ajax({
@@ -584,7 +622,7 @@ function razorpayPayment(order) {
         "currency": "INR",
         "name": "Beat it",
         "description": "Test Transaction",
-        "image": "https://static.thenounproject.com/noun-svg/80286.svg?Expires=1668089468&Signature=PJSHUzPYoXb4x9q4Wbheaf3TfXdhM297MKwWnE5joP-oj2ji-GiHkwd2sn~B9lvyjGLYiuv7p5SyjDZBFv-Jy~cwX0Y~nHOuUCE243pzSWoWtjqL8lrCfeqMqJO6jO~7xskxKsUXAcm1g9Vvuk72CZehAeG4ng6mjerZkVNKXLk_&Key-Pair-Id=APKAI5ZVHAXN65CHVU2Q",
+        "image": src = "/images/3.png",
         "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response) {
             console.log('handler working');
@@ -792,10 +830,10 @@ $("#category-form").submit((e) => {
                 // setTimeout(() => {
                 //     document.getElementById('category-message').classList.add("d-none");
                 // }, 2000)
-               
-                
+
+
                 swal("Category Added!", "success");
-               location.reload()
+                location.reload()
             }
         }
     })
@@ -907,12 +945,14 @@ function histogram(days, buttonId) {
                 let totalOrder = response.deliveredOrders + response.shippedOrders + response.placedOrders
 
                 document.getElementById('totalOrders').innerHTML = totalOrder
-                console.log(totalOrder,'ttttttttttdtdtdtdttdt');
+                console.log(totalOrder, 'ttttttttttdtdtdtdttdt');
                 document.getElementById('totalAmount').innerHTML = response.totalAmount
 
                 var xValues = ["Delivered", "Shipped", "Placed", "Pending", "Canceled"];
                 var yValues = [response.deliveredOrders, response.shippedOrders, response.placedOrders, response.pendingOrders, response.canceledOrders];
                 var barColors = ["green", "blue", "orange", "brown", "red"];
+
+                //new change
 
                 new Chart("order", {
                     type: "bar",
@@ -932,15 +972,15 @@ function histogram(days, buttonId) {
                     }
                 });
 
-                var xValues = ["COD", "Razorpay", "Paypal", ];
-                var yValues = [response.codTotal, response.razorPayTotal,response.paypalTotal];
+                var xValues = ["COD", "Razorpay", "Paypal",];
+                var yValues = [response.codTotal, response.razorPayTotal, response.paypalTotal];
 
                 var barColors = [
                     "#b91d47",
                     "#00aba9",
                     "#2b5797",
-                   
-                   
+
+
                 ];
 
                 new Chart("payment", {
@@ -1083,43 +1123,43 @@ function deleteProductOffer(proId) {
 }
 
 // ==================== DELETE CATEGORY OFFER ==============
-function deleteCategoryOffer(category){
+function deleteCategoryOffer(category) {
     $.ajax({
-        url:'/admin/admin_panel/delete-category-offer',
-        type:'post',
-        data:{
+        url: '/admin/admin_panel/delete-category-offer',
+        type: 'post',
+        data: {
             category
         },
-        success:(response)=>{
-            location.reload(  )
+        success: (response) => {
+            location.reload()
         }
     })
 }
 
 //======================  ADD COUPON ==========================
-$('#add-coupon-form').submit((e)=>{
+$('#add-coupon-form').submit((e) => {
     e.preventDefault()
     $.ajax({
-        url:'/admin/admin_panel/coupon',
-        type:'post',
-        data:$('#add-coupon-form').serialize(),
-        success:(response)=>{
-          if (response.status) {
-            location.href = '/admin/admin_panel/coupon'
-          }
-          else{
-            swal("Already In", "Please Add Some Other Coupon:)", "error");
+        url: '/admin/admin_panel/coupon',
+        type: 'post',
+        data: $('#add-coupon-form').serialize(),
+        success: (response) => {
+            if (response.status) {
+                location.href = '/admin/admin_panel/coupon'
+            }
+            else {
+                swal("Already In", "Please Add Some Other Coupon:)", "error");
 
-            // swal({
-            //     title:'Coupon Already Added',
-            //     icon: 'warning',
-            //     // text:false,
-            //     timer:1000,
-            //     showConfirmButton:false,
-               
-            // })
-          }
-           
+                // swal({
+                //     title:'Coupon Already Added',
+                //     icon: 'warning',
+                //     // text:false,
+                //     timer:1000,
+                //     showConfirmButton:false,
+
+                // })
+            }
+
         }
     })
 })
@@ -1128,43 +1168,43 @@ $('#add-coupon-form').submit((e)=>{
 
 function deleteCoupon(couponId) {
     $.ajax({
-        url:'/admin/admin_panel/coupon',
-        type:'delete',
-        data:{
+        url: '/admin/admin_panel/coupon',
+        type: 'delete',
+        data: {
             couponId
         },
-        success:()=>{
-            $('#'+couponId).remove()
+        success: () => {
+            $('#' + couponId).remove()
         }
     })
 }
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxx  REDEEM COUPON XXXXXXXXXXXXXXXXXXXXXXXX
-$("#redeem-coupon").submit((e)=>{
+$("#redeem-coupon").submit((e) => {
     e.preventDefault()
-    console.log($("#redeem-coupon").serialize(),':::::::::::::::::::::::::::::::');
+    console.log($("#redeem-coupon").serialize(), ':::::::::::::::::::::::::::::::');
     $.ajax({
-        url:'/redeem-coupon',
-        type:'post',
-        data: $("#redeem-coupon").serialize(), 
-        success:(response)=>{
+        url: '/redeem-coupon',
+        type: 'post',
+        data: $("#redeem-coupon").serialize(),
+        success: (response) => {
             if (!response.msg) {
                 $('#coupon-condition').text("")
                 $('#finalPrice').text(response.total)
                 $('#disPrice').text(response.disPrice)
-                $('#totalAmount').val(response.total)             
+                $('#totalAmount').val(response.total)
                 $('#isCoupon').val(response.coupon)
-                console.log(response.totalPrice,'toal price n reddeeem');
-                console.log(response.total,'toatl is this'); 
-                console.log(response.coupon,'|||||||||||||||||||||||||||||||');
+                console.log(response.totalPrice, 'toal price n reddeeem');
+                console.log(response.total, 'toatl is this');
+                console.log(response.coupon, '|||||||||||||||||||||||||||||||');
             } else {
                 $('#coupon-condition').text(response.msg)
-                console.log(response.msg,'man this is rang..');
+                console.log(response.msg, 'man this is rang..');
                 $('#totalAmount').val(response.total)
                 $('#finalPrice').text(response.total)
             }
         }
-        
+
 
     })
 })
@@ -1172,28 +1212,28 @@ $("#redeem-coupon").submit((e)=>{
 //xxxxxxxxxxxxxx PICK ADDRESS AND DISPLAY IN THE FORM XXXXXXXXXXXXXXXXXXXXXXX
 
 function pickAddress(addressId) {
-    console.log(addressId,'333333333333333333');
+    console.log(addressId, '333333333333333333');
     $.ajax({
         url: '/pick-address/' + addressId,
         method: 'get',
         success: (response) => {
             console.log(response);
             // if(response.status)
-                console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii999999999999999999999');
-                $("#firstNameField").val(response[0].address.firstname);
-                $("#lastNameField").val(response[0].address.lastname);
-                $("#addressField").val(response[0].address.address);
-                $("#landmarkField").val(response[0].address.landmark);
-                $("#streetNameField").val(response[0].address.streetName);
-                $("#altnumberField").val(response[0].address.altnumber);
-                $('#countryField').val(response[0].address.country);
-                $("#stateField").val(response[0].address.state);
-                $("#cityField").val(response[0].address.city);
-                $("#pincodeField").val(response[0].address.pincode);
-                $("").val(addressId);
-        //     }else{
-        //         console.log('88888888888888888888888888888888888888888888');
-        //     }
+            console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii999999999999999999999');
+            $("#firstNameField").val(response[0].address.firstname);
+            $("#lastNameField").val(response[0].address.lastname);
+            $("#addressField").val(response[0].address.address);
+            $("#landmarkField").val(response[0].address.landmark);
+            $("#streetNameField").val(response[0].address.streetName);
+            $("#altnumberField").val(response[0].address.altnumber);
+            $('#countryField').val(response[0].address.country);
+            $("#stateField").val(response[0].address.state);
+            $("#cityField").val(response[0].address.city);
+            $("#pincodeField").val(response[0].address.pincode);
+            $("").val(addressId);
+            //     }else{
+            //         console.log('88888888888888888888888888888888888888888888');
+            //     }
         }
     })
 }
@@ -1203,12 +1243,12 @@ function pickAddress(addressId) {
 
 function deleteBanner(bannerId) {
     $.ajax({
-        url:'/admin/admin_panel/banner',
-        type:'delete',
-        data:{
+        url: '/admin/admin_panel/banner',
+        type: 'delete',
+        data: {
             bannerId
         },
-        success:(response)=>{
+        success: (response) => {
             location.reload()
         }
     })

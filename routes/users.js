@@ -7,7 +7,7 @@ require('dotenv').config()
 const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN)
 var paypal = require('paypal-rest-sdk');
 
-const { response } = require('express');
+
 /* GET users listing. */
 
 //=============== PAY PAL =======================
@@ -68,34 +68,20 @@ router.get('/', async (req, res) => {
 
 //signup
 
-// router.get('/user_registration', verifyLogout, function (req, res, next) {
-//   var emailChecker = req.query.valid
-//   console.log(emailChecker);
-//   res.render('user/signup', { emailChecker, not: true })
-// });
 
 router.post('/user_registration', function (req, res) {
   userHelpers.userSignup(req.body).then((response) => {
     req.session.loggedIn = true;
     req.session.user = response.user;
     res.json({ status: true })
-    // res.redirect('/user_signin')
+    
   })
     .catch((response) => {
       res.json({status:false})
-      // var string = encodeURIComponent('Email is already taken');
-      // res.redirect('/user_registration?valid=' + string);
+     
     })
 })
 
-//login 
-
-// router.get('/user_signin', verifyLogout, function (req, res) {
-//   var loginChecker = req.query.valid
-//   console.log(loginChecker + "login ");
-//   res.render('user/signin', { loginChecker, not: true })
-
-// });
 
 //XXXXXXXXXXX USER MODAL LOIGN XXXXXXXXXXXXX
 router.post('/modal-login', (req, res) => {
@@ -122,8 +108,7 @@ router.post('/verifyNumber',(req,res)=>{
         to: `+91${response.mobile}`,
         channel: `sms`
       }).then(() => {
-      //  req.session.loggedIn = true;
-      //  req.session.user = response.user;
+     
         console.log('OTP COMING');
         //to display the otp veerify page for the user
       }).catch((err) => {
@@ -154,80 +139,28 @@ router.post('/loginOtp',(req,res)=>{
         if(data.valid){
           req.session.loggedIn=true
           res.json({status:true})
-          console.log(data,'hhhhhhhhhhhhhhhheeeeeeeeeeeeeeeeelllllllllllllllllo mmmmmoooojjjjjjjjjjjjoooooooooo');
+         
         }else{
           req.session.loggedIn=true
           req.session.user = null
-          console.log('nnnnnnnnnnnooootttttttttt vvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
+          
         }
-        // res.redirect('/')
+        
       }).catch((err) => {
-        // req.session.destroy();
-        // res.redirect("/user_signin")
+      
         console.log(err);
       })
  ////////////////////////////////////////////////
-// console.log(req.body,'oooooooooooooooooottttttttttttttttttttttttpppppppppppppppppppp');
+
 })
 
 
 
-
-// router.post('/user_signin', function (req, res) {
-//   userHelpers.userSignin(req.body).then((response) => {
-
-    //otp verifiaction
-    // console.log(response);
-    // let phoneNumber= response.user.phone_number;
-    // client
-
-    //   .verify
-    //   .services(process.env.SERVICE_ID)
-    //   .verifications
-    //   .create({
-    //     to: `+91${phoneNumber}`,
-    //     channel: `sms`
-    //   }).then((data) => {
-    //     req.session.loggedIn = true;
-    //       req.session.user = response.user;
-    //     console.log(data);
-    //     res.render('user/otp_verify', {phoneNumber,user:true})//to display the otp veerify page for the user
-    //   }).catch((err) => {
-
-    //     console.log(err);
-    //   })
-    // req.session.loggedIn = true;
-    // req.session.user = response.user;
-    // res.redirect('/')
-//   }).catch((response) => {
-//     var string = encodeURIComponent(response);
-//     res.redirect('/user_signin?valid=' + string)
-//   })
-// })
 
 //post otp verification
 router.get('/otp_verify', (req, res) => {
   res.render('user/otp_verify')
 })
-
-// router.post('/otp_verify', (req, res) => {
-
-//   client
-//     .verify
-//     .services(process.env.SERVICE_ID)
-//     .verificationChecks
-//     .create({
-//       to: `+91${req.body.phoneNumber}`,//the user number
-//       code: req.body.code//the otp code
-//     }).then((data) => {
-//       res.redirect('/')
-//     }).catch((err) => {
-//       req.session.destroy();
-//       res.redirect("/user_signin")
-//       console.log(err);
-//     })
-// })
-
 
 // logout of user
 router.get('/logout', (req, res) => {
@@ -252,22 +185,6 @@ router.get('/product-view/:id', async (req, res) => {
     res.render('user/product-view', { products, user: req.session.user, userName, cartCount,logout: !req.session.loggedIn })
   })
 })
-//xxxxxxxxxxxxxxxxxxxxxxxxxxx  LIST ALL PRODUCT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// router.get('/product-list', async (req, res) => {
-//   let cartCount = null;
-//   let userName = req.session.user;
-//   if (req.session.user) {
-//     cartCount = await userHelpers.getCartCount(req.session.user._id)
-//     console.log(cartCount);
-//   }
-//   let category = await userHelpers.getCategory();
-//   userHelpers.getProduct().then((products) => {
-//     console.log('products',products);
-//     res.render('user/product-list', { products, userName, cartCount, category, user: req.session.user ,logout: !req.session.loggedIn})
-//   })
-// })
-
-
 
 //========================================================== THE CART ==========================================================
 
@@ -344,9 +261,9 @@ router.post('/place-order', verifyLogin, async (req, res) => {
   let totalPrice = Number(req.body.total)
   //  totalPrice = parseInt(req.body.total)
   let walletAmount = Number(req.body.wallet)
-  console.log(walletAmount, '44444444444444444444444444');
-  console.log(totalPrice, '33333333333333333333333333333333333');
-  console.log(req.body,'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+  // console.log(walletAmount, '44444444444444444444444444');
+  // console.log(totalPrice, '33333333333333333333333333333333333');
+  // console.log(req.body,'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
   if (walletAmount) {
     if (totalPrice >= walletAmount) {
       totalPrice = totalPrice - walletAmount
@@ -361,9 +278,8 @@ router.post('/place-order', verifyLogin, async (req, res) => {
     totalPrice = totalPrice
     // console.log(totalprice,'222222222222222222222222222222222');
   }
-  // let addressData = await userHelpers.getOrderAddress(req.session.user._id, req.body.addressId)
-  // console.log(req.session.user._id, req.body.addressId,'gggggggggggggggggggggggggggggggggggggggggggggggggg');
-console.log(req.body,'ssssssssssssssssssssssssssssssssssssssssssssss');
+ 
+
   userHelpers.placeOrder(req.body, products, totalPrice, req.body.paymentMethod, req.session.user._id, coupon, req.session.user).then((orderId) => {
 
     if (req.body.paymentMethod === 'COD') {
@@ -430,7 +346,7 @@ console.log(req.body,'ssssssssssssssssssssssssssssssssssssssssssssss');
 
 router.post('/verify-payment', async (req, res) => {
   let userId = req.session.user._id
-  console.log(req.body, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
+ 
   let products =await userHelpers.getCartProductList(userId)
   userHelpers.verifyPayment(req.body).then(() => {
     userHelpers.changePaymentStatus(req.body['order[receipt]'], userId,products).then(() => {
@@ -477,7 +393,7 @@ router.get('/orders', verifyLogin, async (req, res) => {
   }
   userHelpers.deletePendingOrder()
   userHelpers.orderHistory(req.session.user._id).then((response) => {
-    console.log(response, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+   
     res.render('user/orders', { response, user: req.session.user, userName, cartCount,logout: !req.session.loggedIn })
   })
 })
@@ -485,7 +401,7 @@ router.get('/orders', verifyLogin, async (req, res) => {
 //  =============================TO CANCEL THE ORDER IN USER SIDE =============================
 //to delete the user
 router.put('/cancelOrder', (req, res) => {
-  // console.log(req.body,'lllllllllllllllllllllllllllll');
+ 
   console.log(req.orderId);
   orderId = req.body.orderId,
   proId = req.body.proId
@@ -495,11 +411,11 @@ router.put('/cancelOrder', (req, res) => {
 })
 
 //================================== TO RETURN THE PRODUCT IN USER SIDE ========================
-router.put('/returnOrder',(req,res)=>{
-  console.log(req.body,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-  orderId = req.body.orderId,
-  proId = req.body.proId
-  userHelpers.returnOrder(orderId,proId).then(()=>{
+router.put('/returnOrder',async (req,res)=>{
+  console.log(req.body,'ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp');
+  let products = await userHelpers.getProductView(req.body.proId)
+  console.log(products,'zzzzzzzzzzzzzzzzzzzzzzzzzz');
+  userHelpers.returnOrder(req.body,req.session.user._id,products).then(()=>{
     res.json({status:true})
   })
 
@@ -611,13 +527,7 @@ router.post('/edit-address', verifyLogin, async (req, res) => {
   })
 })
 
-// router.get('/getPickAddress',(req, res)) => {
-//   router.get('/getPickAddress', verifyLogin, (req, res) => {
-//   addressHelper.getOrderAddress(req.session.user._id, req.params.addressId).then((address) => {
-//       res.json(address)
-//   })
 
-// })
 // //============================================================== DELETE THE ADDRESS ====================================
 
 router.delete('/delete-address', verifyLogin, (req, res) => {
@@ -662,12 +572,6 @@ router.post('/redeem-coupon', async (req, res) => {
   })
 })
 
-//XXXXXXXXXXXXXXX PICK ADDRESS XXXXXXXXXXXXXXXXXXXXXXX
-// router.get('/pick-address/:id',(req,res)=>{
-//   userHelpers.getPickAddress(req.session.user._id, req.params.addressId).then((address)=>{
-//     res.json(address)
-//   })
-// })
 
 //xxxxxxxxxxxxxxx WALLET PAGE XXXXXXXXXXXXXXXX
 router.get('/wallet', verifyLogin, async (req, res) => {
@@ -702,19 +606,6 @@ router.get('/search',async (req,res)=>{
   })
  
 })
-///xxxxxxxxxxxxxxxxxxxx GET ADDRESS FOR TEMPORARY ADDRESS XXXXXXXXXXXXXX
-// router.get('/getPickAddress',(req,res)=>{
-//   console.log('111111111111111111111111111111111111');
-//   userHelpers.getOrderAddress(req.session.user._id,req.params.addressId).then((address)=>{
-//     res.json(address)
-//   })
-// })
-
-//   router.get('/getCurrentAddress',async (req,res)=>{
-//     console.log('11111111111111111111111111100000000000000000000000000000000');
-//   let userAddress = await addressHelper.getOrderAddress(req.session.user._id, req.params.addressId)
-//   res.json(userAddress)
-// })
 
 router.get('/pick-address/:addressId',(req,res)=>{
   console.log('22222222222222222222222222');

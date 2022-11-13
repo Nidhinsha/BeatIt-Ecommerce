@@ -3,6 +3,12 @@
 	style="left:530px;margin-bottom: 100px; margin-top: 100px; background-color: black; border-radius:10px; z-index: 1;">
 	<p class="text-center mt-3" style="color: white;">Product Added to Cart</p>
 </div>
+{{!-- this one for display the stock is out of stock --}}
+{{!-- <div class="position-fixed w-25 d-none " id="success"
+	style="left:530px;margin-bottom: 100px; margin-top: 100px; background-color: black; border-radius:10px; z-index: 1;">
+	<p class="text-center mt-3" style="color: white;">Product Added to Cart</p>
+</div> --}}
+
 <div class="position-fixed w-25 d-none " id="success-wishlist"
 	style="left:530px; background-color: black; border-radius:10px">
 	<p class="text-center mt-3" style="color: white;">Product Added to wishlist</p>
@@ -50,6 +56,8 @@
 							href="/product-view/{{this._id}}"><img class="img-fluid w-100" src="{{this.image.[0]}}"
 								alt="..."></a>
 						<div class="product-overlay">
+							{{!-- {{#if ../user}} --}}
+							{{#if this.stock}}
 							<ul class="mb-0 list-inline">
 								<li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"
 										onclick="addToWishlist('{{this._id}}')"><i class="far fa-heart"></i></a></li>
@@ -58,6 +66,16 @@
 								<li class="list-inline-item me-0"><a class="btn btn-sm btn-outline-dark"
 										href="/product-view/{{this._id}}"><i class="fas fa-expand"></i></a></li>
 							</ul>
+							{{else}}
+							<ul class="mb-0 list-inline">
+								<li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"
+										onclick="addToWishlist('{{this._id}}')"><i class="far fa-heart"></i></a></li>
+								<li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-danger"
+										>Out of stock</a></li>
+								<li class="list-inline-item me-0"><a class="btn btn-sm btn-outline-dark"
+										href="/product-view/{{this._id}}"><i class="fas fa-expand"></i></a></li>
+							</ul>
+							{{/if}}
 						</div>
 					</div>
 					<h6> <a class="reset-anchor" href="/product-view/{{this._id}}">{{this.product_name}}</a></h6>

@@ -226,27 +226,6 @@ router.post('/admin_panel/products/edit_product/:id', upload.fields([
 
 
 
-//newly added item to display images and all
-// let id = req.params.id;
-// let image1 = req.files?.image1;
-// let image2 = req.files?.image2;
-// let image3 = req.files?.image3;
-// let image4 = req.files?.image4;
-// if (image1) {
-//     image1.mv('./public/product-images/' + id + "/" + id + "_0" + '.png')
-// }
-// if (image2) {
-//     image2.mv('./public/product-images/' + id + "/" + id + "_1" + '.png')
-// }
-// if (image3) {
-//     image3.mv('./public/product-images/' + id + "/" + id + "_2" + '.png')
-// }
-// if (image4) {
-//     image4.mv('./public/product-images/' + id + "/" + id + "_3" + '.png')
-// }
-
-// console.log(image);
-//ADMIN PRODUCT MANAGEMENET
 
 router.get('/admin_panel/category-management', verifyLogin, (req, res) => {
 
@@ -342,55 +321,8 @@ router.get('/data-table', (req, res) => {
     res.render('admin/data-table')
 })
 
-//admin side bar new for shuhaib sir
 
-router.get('/admin-side-new', (req, res) => {
-    res.render('admin/admin-side-new', { not: true })
-})
-//sample
-router.get('/sample', (req, res) => {
-    res.render('admin/sample')
-})
-//sample form 
-router.get('/sample-form', (req, res) => {
-    res.render('admin/sample-form')
-})
-//sample login
-router.get('/sample-login', (req, res) => {
-    res.render('admin/sample-login', { admin: true })
-})
-//crop sample
-router.get('/crop-sample', (req, res) => {
-    res.render('admin/crop-sample')
-})
-//nav-bar sample
-
-router.get('/sample-add', (req, res) => {
-    res.render('admin/sample-add', { not: true })
-})
-//address card to display the address
-
-router.get('/address-cards', (req, res) => {
-    res.render('admin/address-cards')
-})
-//============================= ALL SAMPLE ==========================================
 //============================= SALES REPORT     ==========================================
-// router.get('/admin_panel/sales-report',(req,res)=>{
-
-//     adminHelpers.salesReport(1).then((response)=>{
-//         console.log(response,'sales report in get');
-//         res.render('admin/sales-report',{admin:true,response})
-//     })
-
-// })
-
-// router.get('/admin_panel/sales-report/:days',(req,res)=>{
-//     adminHelpers.salesReport(req.params.days).then((response)=>{
-//         console.log(response,'sales report days');
-//         res.json(response)
-//     })
-// })
-
 
 //sales report
 router.get("/admin_panel/sales-report", verifyLogin, async (req, res) => {
@@ -403,7 +335,7 @@ router.get("/admin_panel/sales-report", verifyLogin, async (req, res) => {
     } else {
         deliveredOrders = await adminHelpers.deliveredOrderList();
     }
-    console.log(deliveredOrders, 'this iiiiiiiiiiiiiiiiiiiiiiiiiiii');
+ 
    let revenue =await adminHelpers.getRevenue(deliveredOrders)
     res.render("admin/sales-report", { admin: true, deliveredOrders,revenue });
   
@@ -414,7 +346,7 @@ router.get("/admin_panel/sales-report", verifyLogin, async (req, res) => {
 
 router.get('/admin_panel/dashboard', verifyLogin, (req, res) => {
     adminHelpers.salesReport(req.params.days).then((response) => {
-        console.log(response,'77777777777777777777777777777777');
+       
         
     res.render('admin/dashboard', { admin: true,response })
     })
@@ -422,7 +354,7 @@ router.get('/admin_panel/dashboard', verifyLogin, (req, res) => {
 
 router.get('/admin_panel/dashboard/:days', verifyLogin, (req, res) => {
     adminHelpers.salesReport(req.params.days).then((response) => {
-        console.log(response,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+        
         res.json(response)
     })
 })
@@ -536,6 +468,10 @@ router.delete('/admin_panel/banner',(req,res)=>{
     adminHelpers.deleteBanner(bannerId).then(()=>{
         res.json({status:true})
     })
+})
+//xxxxxxxxxxxxxxxxxxxxxx testing xxxxxxxxxxxxxxxxx
+router.get('/crop',(req,res)=>{
+    res.render('admin/crop-sample')
 })
 module.exports = router;
 

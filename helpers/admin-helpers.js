@@ -151,7 +151,7 @@ module.exports = {
                 }
 
             ).then((response) => {
-                console.log(response, 'OOOOOOOOOOOOOOOOOOOOOOOOOOO');
+                // console.log(response, 'OOOOOOOOOOOOOOOOOOOOOOOOOOO');
                 resolve(response)
             })
 
@@ -250,7 +250,7 @@ module.exports = {
             ]).toArray()
 
             resolve(orderItems)
-            console.log(orderItems + 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
+            // console.log(orderItems + 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
         })
     },
     //cancel orders
@@ -385,7 +385,7 @@ module.exports = {
     getRevenue: (orderDetails) => {
         return new Promise(async (resolve, reject) => {
             const total = orderDetails.reduce((acc, item) => acc + item.totalAmount, 0)
-            console.log(total, '555555555555555555555555555555555555555555555');
+           
             resolve(total)
         })
 
@@ -579,7 +579,7 @@ module.exports = {
                 }]
             ).toArray()
             resolve(offerProducts)
-            console.log(offerProducts, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+            // console.log(offerProducts, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
         })
 
     },
@@ -644,7 +644,7 @@ module.exports = {
     //add category offer
     addCategoryOffer: (details) => {
 
-        console.log(details, 'ooooooooooooooooooooooooooo');
+       
 
         let category = details.category
         let percentage = Number(details.percentage)
@@ -864,7 +864,7 @@ module.exports = {
     },
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ADD BANNNER XXXXXXXXXXXXXXXXXXXX
     addBanner: (data, urls) => {
-        console.log(data, urls, 'bbbbbbbbbbbbbbbbbbbbbbbbb');
+      
         return new Promise((resolve, reject) => {
             data.image = urls
             data.time = new Date()
@@ -877,7 +877,7 @@ module.exports = {
     getBanner: () => {
         return new Promise(async (resolve, reject) => {
             let banner = await db.get().collection(collection.BANNER_COLLECTION).find().toArray()
-            console.log(banner, 'bannnnnnnnnnnnnnnnnnner');
+           
             resolve(banner)
         })
     },

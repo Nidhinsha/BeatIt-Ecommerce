@@ -50,20 +50,23 @@
                             <th scope="col">Order Amount</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Delivered Date</th>
-                            <th scope="col" style="width:100px ;">Status</th>
+                            {{!-- <th scope="col" style="width:100px ;">Status</th> --}}
                         </tr>
                     </thead>
 
                     <tbody>
+                       
                         {{#each deliveredOrders}}
+                      
                         <tr>
                             <td scope="col"><strong>{{{inc @index}}}</strong></td>
                             <td scope="col">{{this._id}}</td>
                             <td scope="col">{{this.totalAmount}}</td>
                             <td scope="col">{{this.paymentMethod}}</td>
                             <td scope="col">{{this.statusUpdateDate}}</td>
-                            <td>{{this.status}}</td>
-                        </tr>                        
+                            {{!-- <td>{{this.status}}</td> --}}
+                        </tr> 
+                                           
                         {{/each}}
                         <tfoot >
                           <tr >

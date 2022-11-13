@@ -56,7 +56,7 @@
             <div class="text-success">${{products.offerPrice}} </div>
 
             {{else}}
-           <div class="text-decor h3"> {{products.actualPrice}}</div>
+            <div class="text-decor h3"> {{products.actualPrice}}</div>
             <figcaption class="text-danger">No Offer </figcaption>
 
             {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
@@ -132,12 +132,19 @@
             <div>
                 <div class="d-flex">
                     {{#if user}}
+                    {{#if products.stock}}
                     <button onclick="addToWishlist('{{products._id}}')" class="btn btn-outline-dark btn-lg me-3"
                         style="border-radius: 0;">Add to Wishlist</button>
 
                     <button onclick="addToCart('{{products._id}}')" class="btn btn-dark btn-lg"
                         style="border-radius: 0;">Add to Cart</button>
                     {{else}}
+                    <button onclick="addToWishlist('{{products._id}}')" class="btn btn-outline-dark btn-lg me-3"
+                        style="border-radius: 0;">Add to Wishlist</button>
+                    <button class="btn btn-danger btn-lg" style="border-radius: 0;">Item Out of stock</button>
+                    {{/if}}
+                    {{else}}
+
                     <button type="button" class="btn btn-outline-dark btn-lg me-3" data-bs-toggle="modal"
                         style="border-radius: 0;" data-bs-target="#signInModal" data-bs-whatever="@mdo">Add to
                         Wishlist</button>
@@ -145,8 +152,7 @@
                     <button type="button" class="btn btn-outline-dark btn-lg me-3" data-bs-toggle="modal"
                         style="border-radius: 0;" data-bs-target="#signInModal" data-bs-whatever="@mdo">Add to
                         cart</button>
-
-
+                   
                     {{/if}}
                 </div>
             </div>

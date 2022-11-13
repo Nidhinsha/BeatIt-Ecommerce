@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const Razorpay = require('razorpay');
 var paypal = require('paypal-rest-sdk');
 const { PRODUCT_COLLECTION } = require("../config/collections");
-const { response } = require("express");
-const { syncBuiltinESMExports } = require("module");
+
+// const { syncBuiltinESMExports } = require("module");
 require('dotenv').config()
 
 //===========  FOR RAZORPAY ====================
@@ -85,16 +85,16 @@ module.exports = {
         })
     },
     //checking the phone number with data base  fot otp login
-    verifyNumber:(phoneNumber)=>{
+    verifyNumber: (phoneNumber) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.USER_COLLECTION).findOne({mobile:phoneNumber}).then((response)=>{
-                if(response!=null){
+            db.get().collection(collection.USER_COLLECTION).findOne({ mobile: phoneNumber }).then((response) => {
+                if (response != null) {
                     resolve(response)
-                    console.log(response,'hiihhihihi');
-                }else{
+                    console.log(response, 'hiihhihihi');
+                } else {
                     reject(response)
                 }
-           })
+            })
         })
     },
     getProduct: () => {
@@ -531,16 +531,18 @@ module.exports = {
         })
     },
 
-     // to return  the orders from the user Side
-     returnOrder: (orderId, proId) => {
-        console.log('RRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEETTTTTTTTTTUUUUUUUURRRRRNNNNNNNN');
-        console.log(orderId, proId, + 'order id is coming welluuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+    //xxxxxxxxxxxxxxxxxxxxxxxx to return  the orders from the user Side  xxxxxxxxxxxxxxxx
+    returnOrder: (data,userId,products) => {
+       
+        // console.log(data.orderId,data.proId,userId,products + 'order id is coming welluuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
         return new Promise((resolve, reject) => {
             let dateStatus = new Date()
-            db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objId(orderId), 'products.item': objId(proId) },
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objId(data.orderId), 'products.item': objId(data.orderId) },
                 { $set: { 'products.$.status': 'return' } }).then(() => {
                     resolve()
                 })
+                db.get().collection(collection.WALLET_COLLECTION).updateOne({userId:objId(userId)},{ $inc: { walletBalace: products.offerPrice }})
+                
         })
     },
 
@@ -581,7 +583,7 @@ module.exports = {
                         item: 1, quantity: 1, product: {
                             $arrayElemAt: ['$product', 0]
                         }, deliveryDetails: 1,
-                        paymentMethod: 1, totalAmount: 1, status: 1, date: 1,displayDate:1, statusUpdateDate: 1
+                        paymentMethod: 1, totalAmount: 1, status: 1, date: 1, displayDate: 1, statusUpdateDate: 1
                     }
                 }
 
@@ -737,8 +739,8 @@ module.exports = {
                     }, {
                         $project: {
                             address: 1,
-                            email:1,
-                            mobile:1
+                            email: 1,
+                            mobile: 1
                         }
                     }
                 ]).toArray()
@@ -874,8 +876,8 @@ module.exports = {
                                 'products.$.status': 'placed'
                             }
                         })
-                        console.log(response,'kkkkkkkkkkkkkkkkkkkkkkkkkkkk');
-              await  db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objId(element.item) },
+                console.log(response, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+                await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objId(element.item) },
                     { $inc: { stock: -(element.quantity) } })
             });
             // db.get(collection.COUPON_COLLECTION).updateOne({coupon:coupon},{$push:{user:objId(user)}})
@@ -1044,23 +1046,23 @@ module.exports = {
         })
     },
     //xxxxxxxxxxxxxxxx  DISPLAY RANDOM PRODUCTS IN LANDING PAGE XXXXXXXXXXXXXX
-    randomProducts:()=>{
+    randomProducts: () => {
         return new Promise((resolve, reject) => {
             let random = db.get().collection(collection.PRODUCT_COLLECTION).aggregate(
                 [
                     {
-                      '$match': {
-                        'actualPrice': {
-                          '$gt': 0
+                        '$match': {
+                            'actualPrice': {
+                                '$gt': 0
+                            }
                         }
-                      }
                     }, {
-                      '$limit': 4
+                        '$limit': 4
                     }
-                  ]
+                ]
             ).toArray()
             resolve(random)
-            console.log(random,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+            console.log(random, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
         })
     }
 

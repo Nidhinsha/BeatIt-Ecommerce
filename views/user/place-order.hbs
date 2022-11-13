@@ -62,7 +62,7 @@
                 <form action="" id="address-submit" method="post" class="needs-validation" >
                     {{#each addressData}}
                     <label class="card m-2" style="width: 100%;">
-                        <input class="radio" type="radio" required checked
+                        <input class="radio" type="radio" required 
                          name="addressId" onchange="pickAddress('{{this.address._id}}')"  value="{{this.address._id}}">
                         {{!-- <input type="radio" onchange="pickAddress('{{this.address._id}}')" name="addressId"
                             class="card-input-element d-none" value="" id="demo1"> --}}
