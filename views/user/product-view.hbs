@@ -6,8 +6,8 @@
         <div>
 
             <div>
-                <div class="col-md-4 px-0" id="img-container" style="width: 400px;">
-                    <img id="image" src="{{products.image.[0]}}" class="img-fluid">
+                <div class="col-md-4 px-0"  style="width: 400px;">
+                    <img id="image" src="{{products.image.[0]}}" class="img-fluid block__pic">
                 </div>
 
             </div>
@@ -15,22 +15,22 @@
                 {{!-- {{#each products}} --}}
                 <div class="col-md-2 me-3 px-0 ">
                     <button class="border-0" onclick="changeImage('img0')">
-                        <img src="{{products.image.[0]}}" class="img-fluid" id="img0" width="100">
+                        <img src="{{products.image.[0]}}" class="img-fluid " id="img0" width="100">
                     </button>
                 </div>
                 <div class="col-md-2 me-3 px-0 ">
                     <button class="border-0" onclick="changeImage('img1')">
-                        <img src="{{products.image.[1]}}" class="img-fluid" id="img1" width="100">
+                        <img src="{{products.image.[1]}}" class="img-fluid " id="img1" width="100">
                     </button>
                 </div>
                 <div class="col-md-2 me-3 px-0">
                     <button class="border-0" onclick="changeImage('img2')">
-                        <img src="{{products.image.[2]}}" class="img-fluid" id="img2" width="100">
+                        <img src="{{products.image.[2]}}" class="img-fluid " id="img2" width="100">
                     </button>
                 </div>
                 <div class="col-md-2 me-3 px-0">
                     <button class="border-0" onclick="changeImage('img3')">
-                        <img src="{{products.image.[3]}}" class="img-fluid" id="img3" width="100">
+                        <img src="{{products.image.[3]}}" class="img-fluid " id="img3" width="100">
                     </button>
                 </div>
 
@@ -107,27 +107,7 @@
             <div class="my-3" style="width: 30rem;">
                 <div class="">{{products.description}}</div>
             </div>
-            {{!-- {{/each}} --}}
-            {{!-- <div class="col-sm-3 mb-4">
-                <span class="text-decor">Qty:</span>
-                <div class="input-group">
-
-                    <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-number" disabled="disabled"
-                            data-type="minus" data-field="quant[1]">
-                            <span class="fa fa-minus"></span>
-                        </button>
-                    </span>
-                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-                    <span class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus"
-                            data-field="quant[1]">
-                            <span class="fa fa-plus"></span>
-                        </button>
-                    </span>
-                </div>
-
-            </div> --}}
+            
 
             <div>
                 <div class="d-flex">
@@ -162,69 +142,3 @@
 
 </div>
 
-{{!-- MODAL FOR SIGN --}}
-{{!-- <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <section>
-                <div class="container h-100">
-                    <div class="row d-flex justify-content-center align-items-center ">
-
-                        <div class="card bg-dark text-white" style="border-radius: 0rem;">
-                            <div class="card-body p-5 text-center">
-                                <form id="login-form" method="post">
-                                    <div class="invalid-feedback ms-5 d-block">
-
-                                    </div>
-                                    {{#if loginChecker}}
-                                    <div>{{loginChecker}}</div>
-                                    {{/if}}
-                                    <div class="mb-md-5 mt-md-4 pb-5">
-
-                                        <h2 class="fw-bold mb-2 text-uppercase text-white">Login</h2>
-                                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
-                                        <div class="invalid-feedback ms-5 d-block"></div>
-                                        <div class="form-outline form-white mb-4">
-                                            <input type="email" class="form-control form-control-lg" id="email"
-                                                placeholder="Your Email" name="email" />
-                                            <label class="form-label" for="typeEmailX">Email</label>
-                                        </div>
-
-                                        <div class="invalid-feedback ms-5 d-block"></div>
-
-                                        <div class="form-outline form-white mb-4">
-                                            <input type="password" class="form-control form-control-lg" id="password"
-                                                placeholder="Password" name="password" />
-                                            <label class="form-label" for="typePasswordX">Password</label>
-
-                                        </div>
-
-                                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/otp_verify">Login
-                                                With OTP</a>
-                                        </p>
-
-                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
-
-
-                                    </div>
-
-
-                                    <div>
-                                        <p class="mb-0 text-white">Don't have an account? <a href="/user_registration"
-                                                class="text-white-50 fw-bold">Sign
-                                                Up</a>
-                                        </p>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
-        </div>
-    </div>
-</div> --}}

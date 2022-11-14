@@ -103,6 +103,24 @@ module.exports = {
             }
         })
     },
+
+    //xxxxxxxxxxxxxxxxxxxxxxx UPDATE CATEGORY IN USER PRODUCT TOO.. XXXXXXXXXXXXXXXXXXX
+  
+    updateProductCategory:(categoryData)=>{
+        categoryData.inputValue = categoryData.inputValue.toUpperCase()
+        console.log(categoryData,'90909090909090909090909090');
+        return new Promise(async (resolve, reject) => {
+             await db.get().collection(collection.PRODUCT_COLLECTION).updateMany(
+                { 
+                    category: categoryData.categoryName
+                },{
+                $set:{
+                    category:categoryData.inputValue
+                }
+            })
+            resolve()
+        })
+    },
     //delete categories
     deleteCategory: (categoryId) => {
         return new Promise((resolve, reject) => {
@@ -406,6 +424,7 @@ module.exports = {
             data.placedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({ date: { $gte: startDate, $lte: endDate }, 'products.status': 'placed' }).count()
             data.pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({ date: { $gte: startDate, $lte: endDate }, 'products.status': 'pending' }).count()
             data.canceledOrders = await db.get().collection(collection.ORDER_COLLECTION).find({ date: { $gte: startDate, $lte: endDate }, 'products.status': 'canceled' }).count()
+            data.returnedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({ date: { $gte: startDate, $lte: endDate }, 'products.status': 'returned' }).count()
             let codTotal = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
                     $match: {

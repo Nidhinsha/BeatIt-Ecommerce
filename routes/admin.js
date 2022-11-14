@@ -6,7 +6,7 @@ const adminHelpers = require("../helpers/admin-helpers")
 const cloudinary = require('../utils/cloudinary')
 const multer = require('multer')
 const path = require('path');
-const { response } = require('../app');
+
 upload= multer({
     storage:multer.diskStorage({}),
     fileFilter:(req,file,cb) => {
@@ -181,14 +181,7 @@ router.get('/admin_panel/products/edit_product/:id', verifyLogin, (req, res) => 
     })
 })
 
-// router.post('/admin_panel/products/edit_product/:id', upload.array('image1', 4), (req, res) => {
-    
-//     adminHelpers.editProduct(req.params.id, req.body).then(() => {
-//         res.redirect('/admin/admin_panel/products')
 
-        
-//     })
-// })
 router.post('/admin_panel/products/edit_product/:id', upload.fields([
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
@@ -200,7 +193,7 @@ router.post('/admin_panel/products/edit_product/:id', upload.fields([
       console.log("qwertyui");
       return new Promise((resolve) => {
         cloudinary.uploader.upload(file, (err, res) => {
-          console.log(err, " asdfgh");
+          console.log(err, "err in edit product");
           if (err) return res.status(500).send("Upload Image Error")
           resolve(res.secure_url)
         })
@@ -243,9 +236,12 @@ router.post('/admin_panel/category-management', (req, res) => {
         res.redirect('admin/admin_panel/category-management')
     })
 })
+// im going to edit here 
 //put category
 router.put('/admin_panel/category-management', (req, res) => {
-    adminHelpers.editCategory(req.body).then(() => {
+    adminHelpers.editCategory(req.body).then(async () => {
+       console.log(req.body,'[[[[[[[[[[[[[[[[[[[[[[[[[[[');
+       await adminHelpers.updateProductCategory(req.body)
         res.json({ status: true })
 
     }).catch(() => {

@@ -189,22 +189,16 @@ function otpValidate() {
 }
 
 //productzoom
-var options = {
-    width: 400,
-    zoomWidth: 500,
-    offset: { vertical: 100, horizontal: 10 },
-    scale: .5
-};
-new ImageZoom(document.getElementById("img-container"), options);
 
-//admin dash board onclik event color changer
-// $(function() {
-//     $("li").click(function(e) {
-//       e.preventDefault();
-//       $("li").removeClass("active");
-//       $(this).addClass("active");
-//     });
-// });
+// zoom in product details
+
+$(document).ready(function () {
+    $(".block__pic").imagezoomsl({
+        zoomrange: [6, 6]
+});
+});
+
+
 //cahnge image
 function changeImage(id) {
     var img = document.getElementById("image");
@@ -411,17 +405,7 @@ function returnOrder(orderId, proId, status) {
         inputPlaceholder: "Write something",
         showCancelButton: true,
         closeOnConfirm: false,
-        // title: 'Are you sure?',
-        // input: 'text',
-        // // text: "You sure you want to return this!",   
-
-        // icon: 'warning',
-        // showCancelButton: true,
-        // confirmButtonColor: '#3085d6',
-        // cancelButtonColor: '#d33',
-        // confirmButtonText: 'Yes, Return it!',
-        // closeOnConfirm: true,
-        // closeOnConfirm: true
+       
     },
         function (inputValue) {
             if (inputValue === null) return false;
@@ -450,25 +434,7 @@ function returnOrder(orderId, proId, status) {
                     }
                 })
             }
-            // function (isConfirm) {
-            //     if (isConfirm) {
-            //         $.ajax({
-            //             url: "/returnOrder",
-            //             method: "put",
-            //             data: {
-            //                 orderId,
-            //                 proId,
-            //                 status
-            //             },
-            //             success: (response) => {
-            //                 if (response.status) {
-            //                     document.getElementById(orderId + proId).innerHTML = status
-            //                     document.getElementById(proId + orderId).style.display = 'none'
-            //                 }
-
-            //             }
-            //         })
-            //     }
+           
 
         }
     )
@@ -622,7 +588,7 @@ function razorpayPayment(order) {
         "currency": "INR",
         "name": "Beat it",
         "description": "Test Transaction",
-        "image": src = "/images/3.png",
+        "image": src = "/images/beatit2.jpg",
         "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response) {
             console.log('handler working');
@@ -664,9 +630,10 @@ function verifyPayment(payment, order) {
 
         success: (response) => {
             if (response.status) {
+                swal("Thank you! ", "Your Order is Placed ", "success"); 
                 location.href = '/orders'
             } else {
-                alert('Payment failed')
+                swal("Error! ", "Something went wrong", "error"); 
             }
         }
     })
@@ -841,7 +808,7 @@ $("#category-form").submit((e) => {
 
 // TO EDIT THE CATEGORY
 
-function editCategory(categoryId) {
+function editCategory(categoryId,categoryName) {
     console.log('category is comijg', categoryId);
     let category = document.getElementById(categoryId).innerHTML
 
@@ -870,7 +837,8 @@ function editCategory(categoryId) {
                 method: 'put',
                 data: {
                     categoryId,
-                    inputValue
+                    inputValue,
+                    categoryName
                 },
                 success: (response) => {
                     if (response.status) {
@@ -948,29 +916,32 @@ function histogram(days, buttonId) {
                 console.log(totalOrder, 'ttttttttttdtdtdtdttdt');
                 document.getElementById('totalAmount').innerHTML = response.totalAmount
 
-                var xValues = ["Delivered", "Shipped", "Placed", "Pending", "Canceled"];
-                var yValues = [response.deliveredOrders, response.shippedOrders, response.placedOrders, response.pendingOrders, response.canceledOrders];
-                var barColors = ["green", "blue", "orange", "brown", "red"];
+                var xValues = ["Delivered", "Shipped", "Placed", "Pending", "Canceled","Returned"];
+                var yValues = [response.deliveredOrders, response.shippedOrders, response.placedOrders, response.pendingOrders, response.canceledOrders,response.returnOrders];
+                
 
-                //new change
-
-                new Chart("order", {
-                    type: "bar",
+                //bar chart for order report new change
+                new Chart(document.getElementById("bar-chart"), {
+                    type: 'bar',
                     data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
+                      labels:  xValues,
+                      datasets: [
+                        {
+                          label: "Population (millions)",
+                          backgroundColor: ["#3cba9f", "#8e5ea2","#3e95cd","#e8c3b9","red","#3cba9f"],
+                          data: yValues
+                        }
+                      ]
                     },
                     options: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: "Order Report"
-                        }
+                      legend: { display: false },
+                      title: {
+                        display: true,
+                        text: 'Beat It Order Report'
+                      }
                     }
                 });
+                
 
                 var xValues = ["COD", "Razorpay", "Paypal",];
                 var yValues = [response.codTotal, response.razorPayTotal, response.paypalTotal];
@@ -983,51 +954,31 @@ function histogram(days, buttonId) {
 
                 ];
 
-                new Chart("payment", {
-                    type: "doughnut",
+                new Chart(document.getElementById("polar-chart"), {
+                    type: 'polarArea',
                     data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
+                      labels:  xValues,
+                      datasets: [
+                        {
+                          label: "Population (millions)",
+                          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                          data: yValues
+                        }
+                      ]
                     },
                     options: {
-                        title: {
-                            display: true,
-                            text: "Payment Report"
-                        }
+                      title: {
+                        display: true,
+                        text: 'Beat It Payment Report'
+                      }
                     }
                 });
+               
+
+                
 
 
-
-                // var xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
-                // var yValues = [0, response.users];
-
-                // new Chart("user", {
-                //     type: "line",
-                //     data: {
-                //         // labels: xValues,
-                //         datasets: [{
-                //             fill: true,
-                //             lineTension: 0,
-                //             // backgroundColor: "rgba(0,0,255,1.0)",
-                //             borderColor: "rgba(0,0,255,0.1)",
-                //             data: yValues
-                //         }]
-                //     },
-                //     options: {
-                //         legend: { display: false },
-                //         scales: {
-                //             yAxes: [{ ticks: { min: 0, max: 10 } }],
-                //         },
-                //         title: {
-                //             display: true,
-                //             text: "Users Signed"
-                //         }
-                //     }
-                // });
+                
             }
         }
     })

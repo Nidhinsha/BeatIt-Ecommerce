@@ -12,9 +12,9 @@ var db=require('./config/connection');
 var session = require('express-session');
 var hbs = require('express-handlebars');
 
-var flash = require('connect-flash');
+
 var app = express();
-// var paypal = require('paypal-node-sdk');
+
 //index increment
 let Handlebars = require('handlebars');
 Handlebars.registerHelper("inc", function(value, options)
@@ -36,7 +36,7 @@ Handlebars.registerHelper('ifReturn',function(arg1,options){
 
 })
 
-// view engine setup
+//xxxxxxxxxxxxxxxxxxx view engine setup xxxxxxxxxxxxxxxxxxxxx
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -50,13 +50,13 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//session
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx session xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 app.use(session({ secret: "Key", cookie: { maxAge: 600000 } }));
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-cache, private,no-store,must-revalidate,max-stale=0,pre-check=0')
   next()
 })
-app.use(flash());
+
 app.engine('hbs',hbs.engine({ extname: 'hbs',defaultLayout:'layout',layoutsDir: __dirname + '/views/layout/',partialsDir: __dirname + '/views/partials/'}))
 db.connect((err)=>{
   if (err) {

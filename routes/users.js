@@ -581,12 +581,13 @@ router.get('/wallet', verifyLogin, async (req, res) => {
     cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
   userHelpers.getWallet(req.session.user._id).then((walletDetails) => {
-    console.log(response, 'vvvvvvvvvvvvvvvvvvvvvvvvv');
+    // console.log(response, 'vvvvvvvvvvvvvvvvvvvvvvvvv');
     res.render('user/wallet', { walletDetails, user: req.session.user, userName, cartCount,logout: !req.session.loggedIn })
   })
 })
 //xxxxxxxxxxxxxxx SEARCH PRODUCT XXXXXXXXXXXXXXXXXXXX
 router.get('/search',async (req,res)=>{
+  console.log(req.query.search,'7777777777777777777777777777777');
   let userName = req.session.user
   let cartCount = null;
   if (req.session.user) {
@@ -594,7 +595,7 @@ router.get('/search',async (req,res)=>{
   }
   userHelpers.getSearchProduct(req.query.search).then((response)=>{
     console.log(response,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    userHelpers.getCategory().then(async (category)=>{
+    userHelpers.getCategory().then((category)=>{
     // let products =await  userHelpers.getProduct()
       res.render('user/product-list',{userName,cartCount,response,category,user:req.session.user,logout: !req.session.loggedIn})
     
