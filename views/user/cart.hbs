@@ -18,8 +18,7 @@
                   <div class="row mb-4 d-flex justify-content-between align-items-center">
 
                     <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img src="{{this.product.image.[0]}}"
-                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      <img src="{{this.product.image.[0]}}" class="img-fluid rounded-3" alt="Cotton T-shirt">
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
                       <h6 class="text-muted">{{this.product.category}}</h6>
@@ -34,7 +33,8 @@
                         onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}','{{this.product.stock}}',-1)"
                         style="width: 30px; ">-</button>
 
-                      <span id="{{this.product._id}}" style="margin-left: 10px; margin-right: 10px;margin-top: 6px;">{{this.quantity}}</span>
+                      <span id="{{this.product._id}}"
+                        style="margin-left: 10px; margin-right: 10px;margin-top: 6px;">{{this.quantity}}</span>
                       {{!-- <input id="{{this.product._id}}" min="0" name="quantity" value="{{this.quantity}}"
                         type="number" class="form-control" /> --}}
                       {{!-- cart-item-count ml-3 --}}
@@ -58,8 +58,10 @@
                       <h6 class="mb-0">₹{{this.product.offerPrice}}</h6>
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      {{!-- <a onclick="return confirm('are sure you want to remove this item?')" href="/cart/{{this.product._id}}?_method=DELETE "><i class="fas fa-times"></i></a> --}}
-                     <button style="border: 0; background-color: white;" onclick=" deleteProCart('{{this.product._id}}')"><i class="fas fa-times"></i></button> 
+                      {{!-- <a onclick="return confirm('are sure you want to remove this item?')"
+                        href="/cart/{{this.product._id}}?_method=DELETE "><i class="fas fa-times"></i></a> --}}
+                      <button style="border: 0; background-color: white;"
+                        onclick=" deleteProCart('{{this.product._id}}')"><i class="fas fa-times"></i></button>
                       {{!-- <button onclick="return removeProduct({{this.product._id}})"> <i class="fas fa-times"
                           title="Remove Product"></i></button> --}}
                       {{!-- <a href="/cart/{{this.product._id}}?_method=DELETE" class="text-muted"></a> --}}
@@ -78,7 +80,7 @@
               <div class="col-lg-4 bg-grey">
                 <div class="p-5">
                   <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                 
+
 
                   <hr class="my-4">
                   {{!-- {{#each totalValue}} --}}
@@ -86,7 +88,7 @@
                     <h5 class="text-uppercase">Total</h5>
 
                     {{!-- <h5><span id="total"> {{this.total}}</span></h5> --}}
-                     <h5><span id="total"> {{totalValue}}</span></h5>
+                    <h5><span id="total"> {{totalValue}}</span></h5>
 
                   </div>
 
@@ -100,16 +102,16 @@
                     <img class="img-fluid " src="/images/nocart.webp" width="50%" alt="">
 
                   </div>
-                  
-                  </div>
-                  <div>
-                  </div>
 
-                  <div class="pt-5">
-                    <h6 class="mb-0"><a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back
-                        to shop</a></h6>
-                  </div>
-                
+                </div>
+                <div>
+                </div>
+
+                <div class="pt-5">
+                  <h6 class="mb-0"><a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back
+                      to shop</a></h6>
+                </div>
+
                 {{/if}}
 
 
@@ -121,3 +123,10 @@
     </div>
   </div>
 </section>
+<footer>
+  <p class="copy-right"><img
+      src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
+      alt="copy right image" /> 2022 all right recived </p>
+  <p>privacy policy</p>
+  <p>license</p>
+</footer>

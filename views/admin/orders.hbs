@@ -41,9 +41,9 @@
               <th>Action</th>
             </tr>
           </thead>
-           
+
           <tbody>
-           {{#each response}}
+            {{#each response}}
             <tr>
               <td>
                 {{inc @index}}
@@ -125,7 +125,7 @@
                   <option selected="true" disabled="disabled" style="background-color: rgb(20, 102, 24); color: white;">
                     {{this.status}}</option>
 
-                  
+
                 </select>
                 {{/ifCheck}}
                 {{#ifCheck status 'canceled'}}
@@ -139,10 +139,10 @@
             </tr>
 
 
-            
- {{/each}}
+
+            {{/each}}
           </tbody>
-         
+
         </table>
       </div>
     </div>
@@ -157,7 +157,7 @@
 </style>
 
 <script>
- $(document).ready(function () {
+  $(document).ready(function () {
     $('#order').DataTable();
-});
+  });
 </script>

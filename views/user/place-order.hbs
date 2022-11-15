@@ -59,11 +59,11 @@
             <button class="btn btn-outline-dark mb-3 ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 data-bs-whatever="@mdo">Add Address</button>
             <div class="grid m-0">
-                <form action="" id="address-submit" method="post" class="needs-validation" >
+                <form action="" id="address-submit" method="post" class="needs-validation">
                     {{#each addressData}}
                     <label class="card m-2" style="width: 100%;">
-                        <input class="radio" type="radio" required 
-                         name="addressId" onchange="pickAddress('{{this.address._id}}')"  value="{{this.address._id}}">
+                        <input class="radio" type="radio" required name="addressId"
+                            onchange="pickAddress('{{this.address._id}}')" value="{{this.address._id}}">
                         {{!-- <input type="radio" onchange="pickAddress('{{this.address._id}}')" name="addressId"
                             class="card-input-element d-none" value="" id="demo1"> --}}
 
@@ -84,12 +84,12 @@
                     {{/each}}
                     {{!-- xxxxxxxxxxxxxxxxx TO SHOW ADDRESS IN THE FORM AND EDIT XXXXXXXXXXXXXXXXXXXXXXXXXX --}}
                     {{!-- xxxxxxxxxxxxxxxxxx THIS ONE FOR TEMPORARY ADDRESS --}}
-             <div class="row mt-5">
-                <h4 class="mb-2 text-dark">TEMPORARY ADDRESS</h4>
-                <hr>
+                    <div class="row mt-5">
+                        <h4 class="mb-2 text-dark">TEMPORARY ADDRESS</h4>
+                        <hr>
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control " id="firstNameField"
-                                placeholder="First name" name="firstname" value="" required="">
+                            <input type="text" class="form-control " id="firstNameField" placeholder="First name"
+                                name="firstname" value="" required="">
                             <div class="invalid-feedback"> Valid first name is required. </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -99,10 +99,10 @@
                         </div>
                     </div>
 
-                   
+
                     <div class="mb-3">
-                        <input type="text" class="form-control " id="addressField" placeholder="Address"
-                            name="address" value="" required="">
+                        <input type="text" class="form-control " id="addressField" placeholder="Address" name="address"
+                            value="" required="">
                         <div class="invalid-feedback"> Please enter your address</div>
                     </div>
                     <div class="mb-3">
@@ -116,18 +116,18 @@
                                 placeholder="Phone Number" value="" required="">
                             <div class="invalid-feedback"> Valid Phone Number is required. </div>
                         </div>
-                       <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control " id="streetNameField" placeholder="Street Name"
-                            name="streetName" value="" required="">
-                        <div class="invalid-feedback"> Please enter your street name. </div>
-                    </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="streetNameField" placeholder="Street Name"
+                                name="streetName" value="" required="">
+                            <div class="invalid-feedback"> Please enter your street name. </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             {{!-- <label for="country">Country</label> --}}
-                            <select class="form-control custom-select d-block w-100 country" id="countryField" 
+                            <select class="form-control custom-select d-block w-100 country" id="countryField"
                                 name="country" required>
-                                <option selected="true" disabled="disabled" value="country" >Country
+                                <option selected="true" disabled="disabled" value="country">Country
                                 </option>
                                 <option>India</option>
                                 <option>United States</option>
@@ -137,8 +137,8 @@
                         <div class="col-md-6 mb-3">
                             {{!-- <label for="state">State</label> --}}
                             <select class="form-control custom-select d-block w-100 state" id="stateField" name="state"
-                               required>
-                                <option selected="true" disabled="disabled" value="state" >State</option>
+                                required>
+                                <option selected="true" disabled="disabled" value="state">State</option>
                                 <option>Kerala</option>
                                 <option>Tamilnadu</option>
                                 <option>Karnataka</option>
@@ -150,34 +150,34 @@
                         <div class="col-md-6 mb-3">
                             {{!-- <label for="state">City</label> --}}
                             <select class="form-control custom-select d-block w-100 state" id="cityField" name="city"
-                            
                                 required="">
-                                <option selected="true" disabled="disabled" value="city" >City</option>
+                                <option selected="true" disabled="disabled" value="city">City</option>
                                 <option>kochi</option>
                                 <option>thrissur</option>
                                 <option>kazhimbram</option>
-                               
+
                             </select>
                             <div class="invalid-feedback"> Please provide a valid state. </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             {{!-- <label for="zip">Pincode</label> --}}
-                            <input type="text" class="form-control" id="pincodeField" placeholder="pincode" name="pincode" value=""
-                                required="">
+                            <input type="text" class="form-control" id="pincodeField" placeholder="pincode"
+                                name="pincode" value="" required="">
                             <div class="invalid-feedback"> Pincode required. </div>
                         </div>
-                    </div> 
+                             
+                    </div> 
 
                     {{!-- XXXXXXXXXXXXXXXXXXXX THIS IS LAST LINE OF FORM IN ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXX --}}
 
 
             </div>
-           
-                    {{!--  the user id and address id for temporay  address  --}}
-                    {{!-- <input type="hidden" name="userId" value="{{user._id}}">
-                    <input type="hidden" name="addressId" value=""> --}}
-                    {{!--  the user id and address id for temporay  address  --}}
-              {{!-- xxxxxxxxxxxxxxxxxx THIS ONE FOR TEMPORARY ADDRESS --}}
+
+            {{!-- the user id and address id for temporay address --}}
+            {{!-- <input type="hidden" name="userId" value="{{user._id}}">
+            <input type="hidden" name="addressId" value=""> --}}
+            {{!-- the user id and address id for temporay address --}}
+            {{!-- xxxxxxxxxxxxxxxxxx THIS ONE FOR TEMPORARY ADDRESS --}}
             <hr class="my-4">
             <h4 class="mb-3">Payment</h4>
 
@@ -218,6 +218,13 @@
             </div>
         </div>
 </main>
+<footer>
+    <p class="copy-right"><img
+            src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
+            alt="copy right image" /> 2022 all right recived </p>
+    <p>privacy policy</p>
+    <p>license</p>
+</footer>
 
 {{!-- ========================================== MODAL FORM ==========================================================
 --}}
@@ -480,25 +487,24 @@
 </style>
 <script>
 
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict'
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
 </script>
-

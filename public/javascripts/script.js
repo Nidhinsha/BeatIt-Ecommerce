@@ -194,8 +194,8 @@ function otpValidate() {
 
 $(document).ready(function () {
     $(".block__pic").imagezoomsl({
-        zoomrange: [6, 6]
-});
+        zoomrange: [6, 6]
+    });
 });
 
 
@@ -405,7 +405,7 @@ function returnOrder(orderId, proId, status) {
         inputPlaceholder: "Write something",
         showCancelButton: true,
         closeOnConfirm: false,
-       
+
     },
         function (inputValue) {
             if (inputValue === null) return false;
@@ -425,16 +425,16 @@ function returnOrder(orderId, proId, status) {
                     },
                     success: (response) => {
                         if (response.status) {
-                            swal("Thank you! ", "You reason: " + inputValue, "success"); 
+                            swal("Thank you! ", "You reason: " + inputValue, "success");
                             document.getElementById(orderId + proId).innerHTML = status
                             document.getElementById(proId + orderId).style.display = 'none'
-                           
+
                         }
 
                     }
                 })
             }
-           
+
 
         }
     )
@@ -630,10 +630,10 @@ function verifyPayment(payment, order) {
 
         success: (response) => {
             if (response.status) {
-                swal("Thank you! ", "Your Order is Placed ", "success"); 
+                swal("Thank you! ", "Your Order is Placed ", "success");
                 location.href = '/orders'
             } else {
-                swal("Error! ", "Something went wrong", "error"); 
+                swal("Error! ", "Something went wrong", "error");
             }
         }
     })
@@ -808,7 +808,7 @@ $("#category-form").submit((e) => {
 
 // TO EDIT THE CATEGORY
 
-function editCategory(categoryId,categoryName) {
+function editCategory(categoryId, categoryName) {
     console.log('category is comijg', categoryId);
     let category = document.getElementById(categoryId).innerHTML
 
@@ -879,6 +879,7 @@ function salesReport(days, buttonId) {
                 document.getElementById('placedOrders').innerHTML = response.placedOrders
                 document.getElementById('pendingOrders').innerHTML = response.pendingOrders
                 document.getElementById('canceledOrders').innerHTML = response.canceledOrders
+                document.getElementById('returnedOrders').innerHTML = response.returnedOrders
                 document.getElementById('codTotal').innerHTML = response.codTotal ? response.codTotal : 0
                 document.getElementById('onlineTotal').innerHTML = response.onlineTotal ? response.onlineTotal : 0
                 document.getElementById('totalAmount').innerHTML = response.totalAmount ? response.totalAmount : 0
@@ -916,32 +917,32 @@ function histogram(days, buttonId) {
                 console.log(totalOrder, 'ttttttttttdtdtdtdttdt');
                 document.getElementById('totalAmount').innerHTML = response.totalAmount
 
-                var xValues = ["Delivered", "Shipped", "Placed", "Pending", "Canceled","Returned"];
-                var yValues = [response.deliveredOrders, response.shippedOrders, response.placedOrders, response.pendingOrders, response.canceledOrders,response.returnOrders];
-                
+                var xValues = ["Delivered", "Shipped", "Placed", "Pending", "Canceled", "Returned"];
+                var yValues = [response.deliveredOrders, response.shippedOrders, response.placedOrders, response.pendingOrders, response.canceledOrders, response.returnedOrders];
+
 
                 //bar chart for order report new change
                 new Chart(document.getElementById("bar-chart"), {
                     type: 'bar',
                     data: {
-                      labels:  xValues,
-                      datasets: [
-                        {
-                          label: "Population (millions)",
-                          backgroundColor: ["#3cba9f", "#8e5ea2","#3e95cd","#e8c3b9","red","#3cba9f"],
-                          data: yValues
-                        }
-                      ]
+                        labels: xValues,
+                        datasets: [
+                            {
+                                label: "Population (millions)",
+                                backgroundColor: ["#3cba9f", "#8e5ea2", "#3e95cd", "#e8c3b9", "red", "brown"],
+                                data: yValues
+                            }
+                        ]
                     },
                     options: {
-                      legend: { display: false },
-                      title: {
-                        display: true,
-                        text: 'Beat It Order Report'
-                      }
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Beat It Order Report'
+                        }
                     }
                 });
-                
+
 
                 var xValues = ["COD", "Razorpay", "Paypal",];
                 var yValues = [response.codTotal, response.razorPayTotal, response.paypalTotal];
@@ -957,28 +958,28 @@ function histogram(days, buttonId) {
                 new Chart(document.getElementById("polar-chart"), {
                     type: 'polarArea',
                     data: {
-                      labels:  xValues,
-                      datasets: [
-                        {
-                          label: "Population (millions)",
-                          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                          data: yValues
-                        }
-                      ]
+                        labels: xValues,
+                        datasets: [
+                            {
+                                label: "Population (millions)",
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                data: yValues
+                            }
+                        ]
                     },
                     options: {
-                      title: {
-                        display: true,
-                        text: 'Beat It Payment Report'
-                      }
+                        title: {
+                            display: true,
+                            text: 'Beat It Payment Report'
+                        }
                     }
                 });
-               
-
-                
 
 
-                
+
+
+
+
             }
         }
     })

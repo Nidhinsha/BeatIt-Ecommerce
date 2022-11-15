@@ -1,34 +1,23 @@
-{{!-- new user head --}}
-<header class="p-3 mb-3 border-bottom">
-  <div class="container">
+<nav class="navbar navbar-expand-sm  ">
+  <div class="container-fluid">
+    <a href="/" style="text-decoration: none;" class="mt-3 ms-5">
+      <h2 class="success">Beat <span style="color: palevioletred;"> It</span> </h2>
+    </a>
 
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <div class="logo nav-common">
-        <a href="/" style="text-decoration: none;">
-          <h2 class="success">Beat <span style="color: palevioletred;"> It</span> </h2>
-        </a>
-      </div>
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-          <use xlink:href="#bootstrap" />
-        </svg>
-      </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        {{!-- <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li> --}}
-        {{!-- <li><a href="/" class="nav-link px-2 link-dark">HOME</a></li> --}}
-        {{!-- <li><a href="/search" class="nav-link px-2 link-dark">PRODUCTS</a></li> --}}
-        {{!-- <li><a href="#" class="nav-link px-2 link-dark">COLLECTIONS</a></li> --}}
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
 
       </ul>
 
-
-      <form action="/search" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+      <form action="/search" method="get" class=" d-flex mt-3 ">
         <input type="search" name="search" class="form-control" placeholder="Search..." aria-label="Search">
       </form>
-
-      <div class="dropdown-center ">
+      <div class="dropdown-center mt-3 ms-2 ">
         <button class="btn  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{#if userName}}
           {{userName.firstname}}
@@ -38,24 +27,31 @@
         </button>
         <ul class="dropdown-menu">
           {{#if user}}
-          <li><a class="dropdown-item" href="/profile">Profile</a></li>
-          <li><a class="dropdown-item" href="/orders">Orders</a></li>
-          <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
+          <li><a class="dropdown-item" href="/profile">Profile
+            </a></li>
+          <li><a class="dropdown-item" href="/orders">Orders
+            </a></li>
+          <li><a class="dropdown-item" href="/wishlist">Wishlist
+
+            </a></li>
 
           {{else}}
           <p></p>
           {{/if}}
           {{#if user}}
-          <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+          <li><a class="dropdown-item" href="/logout">
+
+              LogOut
+            </a></li>
           {{else}}
           {{!-- href="/user_signin" --}}
           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#signInModal" data-bs-whatever="@mdo"
-              aria-labelledby="exampleModalLabel">Login</a></li>
+              aria-labelledby="exampleModalLabel">Login
+            </a></li>
           {{/if}}
         </ul>
       </div>
-
-      <div class="cart nav-icon nav-common">
+      <div class="cart nav-icon nav-common mt-3 me-2">
         <a href="/cart" style="text-decoration: none !important;">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart2"
             viewBox="0 0 16 16" style="margin-left: 20px;">
@@ -74,9 +70,13 @@
         </a>
 
       </div>
+
     </div>
   </div>
-</header>
+</nav>
+
+
+
 {{#if logout}} {{!-- MODAL FOR SIGN --}}
 <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -118,7 +118,7 @@
                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" data-bs-toggle="modal" href="#otpNumberModal"
                         role="button">Login With OTP</a>
                     </p>
-                  
+
 
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
@@ -254,72 +254,71 @@
     <div class="modal-content">
       <div class="modal-body">
 
-        
-          <div class="position-relative">
-            <div class="card p-2 text-center">
-              <h6>We sharing the OTP to this Number <br>
-                to verify your account</h6>
-              <div> <span>A code has been sent to your number</span>
-              </div>
-              <div class="invalid-feedback ms-5 d-block">
-              </div>
-              <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2 ">
-                
-                <div class="input-group mb-3 justify-content-center" >
-                  <span class="input-group-text" id="basic-addon1">+91</span>
-                  <form  method="post" id="numberVerify" >
-                  <input type="text" class="form-control" name="phoneNumber" placeholder="Number"id="errNumber" aria-label=""
-                    aria-describedby="basic-addon1">
-                    
-                </div>
+
+        <div class="position-relative">
+          <div class="card p-2 text-center">
+            <h6>We sharing the OTP to this Number <br>
+              to verify your account</h6>
+            <div> <span>A code has been sent to your number</span>
+            </div>
+            <div class="invalid-feedback ms-5 d-block">
+            </div>
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2 ">
+
+              <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text" id="basic-addon1">+91</span>
+                <form method="post" id="numberVerify">
+                  <input type="text" class="form-control" name="phoneNumber" placeholder="Number" id="errNumber"
+                    aria-label="" aria-describedby="basic-addon1">
 
               </div>
-              <div class="text-danger" id="errNum"></div>
-              <div class="mt-4"> <button type="submit" class="btn btn-dark px-4 validate"
-                  >Send OTP</button> </div>
-                   {{!-- data-bs-toggle="modal" data-bs-dismiss="modal" --}}
+
             </div>
-            </form>
-            <div class="card-2">
-              <div class="content d-flex justify-content-center align-items-center">
-              </div>
+            <div class="text-danger" id="errNum"></div>
+            <div class="mt-4"> <button type="submit" class="btn btn-dark px-4 validate">Send OTP</button> </div>
+            {{!-- data-bs-toggle="modal" data-bs-dismiss="modal" --}}
+          </div>
+          </form>
+          <div class="card-2">
+            <div class="content d-flex justify-content-center align-items-center">
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-{{!-- in here we add the OTP  --}}
+{{!-- in here we add the OTP --}}
 <div class="modal fade" id="otpVerifyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
-        
-          <div class="position-relative">
-            <div class="card p-2 text-center">
-              <h6>Please enter the one time password <br>
-                to verify your account</h6>
-              <div> <span>A code has been sent to your number</span>
-              </div>
-              <div class="text-danger" id="mobNo"></div>
-              <div class="invalid-feedback ms-5 d-block">
-              </div>
-              <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-               <form  method="post" id="verifyCode">
-                <input class="m-2 text-center form-control rounded" type="text" id="errOTP" name="code" />
-             
-              </div>
-              <div id="otpERROR"></div>
-              <div class="mt-4"> <button type="submit" class="btn btn-dark px-4 validate">Validate</button> </div>
-              <input type="hidden"  id="phnNumber" name="phnNumber">
-               </form>
+
+        <div class="position-relative">
+          <div class="card p-2 text-center">
+            <h6>Please enter the one time password <br>
+              to verify your account</h6>
+            <div> <span>A code has been sent to your number</span>
             </div>
-            <div class="card-2">
-              <div class="content d-flex justify-content-center align-items-center">
-              </div>
+            <div class="text-danger" id="mobNo"></div>
+            <div class="invalid-feedback ms-5 d-block">
+            </div>
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+              <form method="post" id="verifyCode">
+                <input class="m-2 text-center form-control rounded" type="text" id="errOTP" name="code" />
+
+            </div>
+            <div id="otpERROR"></div>
+            <div class="mt-4"> <button type="submit" class="btn btn-dark px-4 validate">Validate</button> </div>
+            <input type="hidden" id="phnNumber" name="phnNumber">
+            </form>
+          </div>
+          <div class="card-2">
+            <div class="content d-flex justify-content-center align-items-center">
             </div>
           </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-dark" data-bs-target="#otpNumberModal" data-bs-toggle="modal"

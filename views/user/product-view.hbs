@@ -53,7 +53,7 @@
             {{#if products.currentOffer}}
             <div class="text-decor h3"><s class="text-danger">{{products.actualPrice}}</s><span
                     class="text-success">&nbsp;({{products.currentOffer}}% OFF)</span></div>
-            <div class="text-success">${{products.offerPrice}} </div>
+            <div class="text-success h3">${{products.offerPrice}} </div>
 
             {{else}}
             <div class="text-decor h3"> {{products.actualPrice}}</div>
@@ -61,16 +61,7 @@
 
             {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
             {{/if}}
-            {{!-- <div class="mb-3">
-                <div class="text-decor h3">$<s style="color: red;">{{products.actualPrice}}</s></div>
-            </div>
-            <div class="mb-3">
-                <div class="text-success h3">${{products.offerPrice}}({{products.productOffer}}%)</div>
-            </div> --}}
-
-            {{!-- <div class="mb-3">
-                <div class="text-decor h3">₹{{this.offer-price}}</div>
-            </div> --}}
+            
             <div class="rating">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -137,8 +128,19 @@
                 </div>
             </div>
         </div>
+        
+
     </div>
     <hr>
 
 </div>
+
+<footer >
+        <p class="copy-right"><img
+                src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
+                alt="copy right image" /> 2022 all right recived </p>
+        <p>privacy policy</p>
+        <p>license</p>
+</footer>
+
 

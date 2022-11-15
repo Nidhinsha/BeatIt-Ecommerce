@@ -7,7 +7,7 @@
       </p> --}}
 
       <div class="table-responsive">
-        <table  class="display table-bordered border-dark" id="data" >
+        <table class="display table-bordered border-dark" id="data">
           <thead>
             <tr>
               <th>
@@ -39,15 +39,14 @@
               </th>
             </tr>
           </thead>
-           <tbody>
-          {{#each response}}
-         
+          <tbody>
+            {{#each response}}
+
 
             <tr>
               <td>{{inc @index}}</td>
               <td class="py-1">
-                <img src="{{this.image.[0]}}" alt="image" style="width: 45px; height: 45px"
-                  class="rounded-circle" />
+                <img src="{{this.image.[0]}}" alt="image" style="width: 45px; height: 45px" class="rounded-circle" />
               </td>
               <td>
                 {{this.product_name}}
@@ -77,8 +76,8 @@
                   Delete</a>
               </td>
             </tr>
-          
-          {{/each}}
+
+            {{/each}}
           </tbody>
         </table>
       </div>
@@ -87,7 +86,7 @@
 </div>
 
 <script>
- $(document).ready(function () {
+  $(document).ready(function () {
     $('#data').DataTable();
-});
+  });
 </script>

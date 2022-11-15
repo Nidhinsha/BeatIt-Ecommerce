@@ -7,15 +7,15 @@ const cloudinary = require('../utils/cloudinary')
 const multer = require('multer')
 const path = require('path');
 
-upload= multer({
-    storage:multer.diskStorage({}),
-    fileFilter:(req,file,cb) => {
+upload = multer({
+    storage: multer.diskStorage({}),
+    fileFilter: (req, file, cb) => {
         let ext = path.extname(file.originalname)
-        if (ext!==".jpg" && ext!==".jpeg" &&ext!==".png" &&ext!==".webp") {
-            cb(new Error("File type is not supported"),false)
-            return 
-        } 
-        cb(null,true)
+        if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext !== ".webp") {
+            cb(new Error("File type is not supported"), false)
+            return
+        }
+        cb(null, true)
     }
 })
 /* GET home page. */
@@ -139,36 +139,36 @@ router.get('/admin_panel/products/add_product', verifyLogin, (req, res) => {
     })
 })
 //add product
-router.post('/admin_panel/products/add_product',upload.fields([
-{name:'image1' , maxCount:1},
-{name:'image2' , maxCount:1},
-{name:'image3' , maxCount:1},
-{name:'image4' , maxCount:1},
-]),async (req,res)=>{
-    console.log(process.env.API_KEY,'ppppppppppppppppppppppp');
-  const  cloudinaryImageUploadMethod = (file)=>{
-    return new Promise((resolve,reject) => {
-        cloudinary.uploader.upload(file,(err,res)=>{
-            if(err) return res.status(500).send("UPLOAD IMAGE ERROR")
-            resolve(res.secure_url)
+router.post('/admin_panel/products/add_product', upload.fields([
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 },
+    { name: 'image4', maxCount: 1 },
+]), async (req, res) => {
+    console.log(process.env.API_KEY, 'ppppppppppppppppppppppp');
+    const cloudinaryImageUploadMethod = (file) => {
+        return new Promise((resolve, reject) => {
+            cloudinary.uploader.upload(file, (err, res) => {
+                if (err) return res.status(500).send("UPLOAD IMAGE ERROR")
+                resolve(res.secure_url)
+            })
         })
-    })
-  }
-  const files = req.files;
-  let arr1 = Object.values(files);
-  let arr2 = arr1.flat()
-  const urls = await Promise.all(
-    arr2.map(async(file)=>{
-        const {path} = file
-        const result = await cloudinaryImageUploadMethod(path)
-        return result
-    })
-  )
-  console.log(urls,'urls');
-    adminHelpers.addProduct(req.body,urls, (id) => {
+    }
+    const files = req.files;
+    let arr1 = Object.values(files);
+    let arr2 = arr1.flat()
+    const urls = await Promise.all(
+        arr2.map(async (file) => {
+            const { path } = file
+            const result = await cloudinaryImageUploadMethod(path)
+            return result
+        })
+    )
+    console.log(urls, 'urls');
+    adminHelpers.addProduct(req.body, urls, (id) => {
         res.redirect('/admin/admin_panel/products')
     })
-   
+
 })
 
 
@@ -187,35 +187,35 @@ router.post('/admin_panel/products/edit_product/:id', upload.fields([
     { name: 'image2', maxCount: 1 },
     { name: 'image3', maxCount: 1 },
     { name: 'image4', maxCount: 1 },
-  ]), async (req, res) => {
+]), async (req, res) => {
     console.log(req.files);
     const cloudinaryImageUploadMethod = (file) => {
-      console.log("qwertyui");
-      return new Promise((resolve) => {
-        cloudinary.uploader.upload(file, (err, res) => {
-          console.log(err, "err in edit product");
-          if (err) return res.status(500).send("Upload Image Error")
-          resolve(res.secure_url)
+        console.log("qwertyui");
+        return new Promise((resolve) => {
+            cloudinary.uploader.upload(file, (err, res) => {
+                console.log(err, "err in edit product");
+                if (err) return res.status(500).send("Upload Image Error")
+                resolve(res.secure_url)
+            })
         })
-      })
     }
-  
+
     const files = req.files
     let arr1 = Object.values(files)
     let arr2 = arr1.flat()
     const urls = await Promise.all(
-      arr2.map(async (file) => {
-        const { path } = file
-        const result = await cloudinaryImageUploadMethod(path)
-        return result
-      })
+        arr2.map(async (file) => {
+            const { path } = file
+            const result = await cloudinaryImageUploadMethod(path)
+            return result
+        })
     )
     console.log(urls);
-  
-   adminHelpers.editProduct(req.params.id, req.body, urls).then((id) => {
-    res.redirect('/admin/admin_panel/products')
-    })
-  })
+
+    adminHelpers.editProduct(req.params.id, req.body, urls).then((id) => {
+        res.redirect('/admin/admin_panel/products')
+    })
+})
 
 
 
@@ -240,8 +240,8 @@ router.post('/admin_panel/category-management', (req, res) => {
 //put category
 router.put('/admin_panel/category-management', (req, res) => {
     adminHelpers.editCategory(req.body).then(async () => {
-       console.log(req.body,'[[[[[[[[[[[[[[[[[[[[[[[[[[[');
-       await adminHelpers.updateProductCategory(req.body)
+        console.log(req.body, '[[[[[[[[[[[[[[[[[[[[[[[[[[[');
+        await adminHelpers.updateProductCategory(req.body)
         res.json({ status: true })
 
     }).catch(() => {
@@ -274,7 +274,7 @@ router.get('/admin_panel/orders/:status', (req, res) => {
 })
 // orders post
 router.post('/admin_panel/orderStatus', (req, res) => {
-    adminHelpers.changeOrderStatus(req.body.orderId, req.body.status,req.body.proId).then(() => {
+    adminHelpers.changeOrderStatus(req.body.orderId, req.body.status, req.body.proId).then(() => {
         res.json({ status: true })
     })
 })
@@ -331,26 +331,26 @@ router.get("/admin_panel/sales-report", verifyLogin, async (req, res) => {
     } else {
         deliveredOrders = await adminHelpers.deliveredOrderList();
     }
- 
-   let revenue =await adminHelpers.getRevenue(deliveredOrders)
-    res.render("admin/sales-report", { admin: true, deliveredOrders,revenue });
-  
-  
+
+    let revenue = await adminHelpers.getRevenue(deliveredOrders)
+    res.render("admin/sales-report", { admin: true, deliveredOrders, revenue });
+
+
 });
 
 //============================= ADMIN DASHBOARD ==========================================
 
 router.get('/admin_panel/dashboard', verifyLogin, (req, res) => {
     adminHelpers.salesReport(req.params.days).then((response) => {
-       
-        
-    res.render('admin/dashboard', { admin: true,response })
+
+
+        res.render('admin/dashboard', { admin: true, response })
     })
 })
 
 router.get('/admin_panel/dashboard/:days', verifyLogin, (req, res) => {
     adminHelpers.salesReport(req.params.days).then((response) => {
-        
+
         res.json(response)
     })
 })
@@ -379,94 +379,94 @@ router.post("/admin_panel/offers/category-offers", verifyLogin, (req, res) => {
     })
 })
 // DELETE PRODUCT OFFER
-router.post('/admin_panel/delete-product-offer', (req, res) => {    
+router.post('/admin_panel/delete-product-offer', (req, res) => {
     adminHelpers.deleteProductOffer(req.body.proId)
-    res.json({status:true})
+    res.json({ status: true })
 })
 
 //DELETE CATEGORY OFFER
 
-router.post('/admin_panel/delete-category-offer',(req,res)=>{
-    adminHelpers.deleteCategoryOffer(req.body.category).then(()=>{
-        res.json({status:true})
+router.post('/admin_panel/delete-category-offer', (req, res) => {
+    adminHelpers.deleteCategoryOffer(req.body.category).then(() => {
+        res.json({ status: true })
     })
 })
 
 // ============================== COUPOUN ==============================
 
-router.get('/admin_panel/coupon',(req,res)=>{
-     adminHelpers.getCoupon().then((coupons)=>{
-        console.log(coupons,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-        res.render('admin/coupon',{admin:true,coupons})
-     })
-   
+router.get('/admin_panel/coupon', (req, res) => {
+    adminHelpers.getCoupon().then((coupons) => {
+        console.log(coupons, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+        res.render('admin/coupon', { admin: true, coupons })
+    })
+
 })
 
 // =============================== ADD COUPON ==========================
- router.post('/admin_panel/coupon',(req,res)=>{
-    adminHelpers.addCoupon(req.body).then(()=>{
-        res.json({status:true})
-    }).catch(()=>{
-        res.json({status:false})
+router.post('/admin_panel/coupon', (req, res) => {
+    adminHelpers.addCoupon(req.body).then(() => {
+        res.json({ status: true })
+    }).catch(() => {
+        res.json({ status: false })
     })
- })
- //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx DELETE COUPON XXXXXXXXXXXXXXXXXXXXXXXXX
- router.delete('/admin_panel/coupon',(req,res)=>{
-    console.log(req.body,'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
-   adminHelpers.deleteCoupon(req.body).then(()=>{
-    res.json({status:true})
-   })
- })
- //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ADD BANNER XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
- router.get('/admin_panel/banner',(req,res)=>{
-    adminHelpers.getBanner().then((banner)=>{
-        console.log('bannnnnnner',banner);
-        res.render('admin/banner',{admin:true,banner})
+})
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx DELETE COUPON XXXXXXXXXXXXXXXXXXXXXXXXX
+router.delete('/admin_panel/coupon', (req, res) => {
+    console.log(req.body, 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
+    adminHelpers.deleteCoupon(req.body).then(() => {
+        res.json({ status: true })
     })
-   
- })
-router.post('/admin_panel/banner',upload.fields([
-    {name:'banner1' , maxCount:1},
-    {name:'banner2' , maxCount:1},
-    {name:'banner3' , maxCount:1},
-    {name:'banner4' , maxCount:1},
-    ]),async (req,res)=>{
-        console.log(process.env.API_KEY,'ppppppppppppppppppppppp');
-      const  cloudinaryImageUploadMethod = (file)=>{
-        return new Promise((resolve,reject) => {
-            cloudinary.uploader.upload(file,(err,res)=>{
-                if(err) return res.status(500).send("UPLOAD IMAGE ERROR")
+})
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ADD BANNER XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+router.get('/admin_panel/banner', (req, res) => {
+    adminHelpers.getBanner().then((banner) => {
+        console.log('bannnnnnner', banner);
+        res.render('admin/banner', { admin: true, banner })
+    })
+
+})
+router.post('/admin_panel/banner', upload.fields([
+    { name: 'banner1', maxCount: 1 },
+    { name: 'banner2', maxCount: 1 },
+    { name: 'banner3', maxCount: 1 },
+    { name: 'banner4', maxCount: 1 },
+]), async (req, res) => {
+    console.log(process.env.API_KEY, 'ppppppppppppppppppppppp');
+    const cloudinaryImageUploadMethod = (file) => {
+        return new Promise((resolve, reject) => {
+            cloudinary.uploader.upload(file, (err, res) => {
+                if (err) return res.status(500).send("UPLOAD IMAGE ERROR")
                 resolve(res.secure_url)
             })
         })
-      }
-      const files = req.files;
-      let arr1 = Object.values(files);
-      let arr2 = arr1.flat()
-      const urls = await Promise.all(
-        arr2.map(async(file)=>{
-            const {path} = file
+    }
+    const files = req.files;
+    let arr1 = Object.values(files);
+    let arr2 = arr1.flat()
+    const urls = await Promise.all(
+        arr2.map(async (file) => {
+            const { path } = file
             const result = await cloudinaryImageUploadMethod(path)
             return result
         })
-      )
-      console.log(urls,'urls');
-        adminHelpers.addBanner(req.body,urls).then(()=>{
-            res.redirect('/admin/admin_panel/banner')
-        })
-          
+    )
+    console.log(urls, 'urls');
+    adminHelpers.addBanner(req.body, urls).then(() => {
+        res.redirect('/admin/admin_panel/banner')
+    })
+
 })
 //xxxxxxxxxxxxxx DELETE BANNER XXXXXXXXXXXXXXXXX
-router.delete('/admin_panel/banner',(req,res)=>{
-    console.log(req.body,';;;;;;;');
-    console.log(req.body.bannerId,'ll');
+router.delete('/admin_panel/banner', (req, res) => {
+    console.log(req.body, ';;;;;;;');
+    console.log(req.body.bannerId, 'll');
     bannerId = req.body.bannerId
-    adminHelpers.deleteBanner(bannerId).then(()=>{
-        res.json({status:true})
+    adminHelpers.deleteBanner(bannerId).then(() => {
+        res.json({ status: true })
     })
 })
 //xxxxxxxxxxxxxxxxxxxxxx testing xxxxxxxxxxxxxxxxx
-router.get('/crop',(req,res)=>{
+router.get('/crop', (req, res) => {
     res.render('admin/crop-sample')
 })
 module.exports = router;

@@ -1,6 +1,6 @@
- <div class="container">
-<section>
-   
+<div class="container">
+    <section>
+
         {{!-- <div class="title mb-5">
             <p>Hai, &#128075; Anandhu M S</p>
         </div>
@@ -55,9 +55,9 @@
                     </thead>
 
                     <tbody>
-                       
+
                         {{#each deliveredOrders}}
-                      
+
                         <tr>
                             <td scope="col"><strong>{{{inc @index}}}</strong></td>
                             <td scope="col">{{this._id}}</td>
@@ -65,23 +65,24 @@
                             <td scope="col">{{this.paymentMethod}}</td>
                             <td scope="col">{{this.statusUpdateDate}}</td>
                             {{!-- <td>{{this.status}}</td> --}}
-                        </tr> 
-                                           
-                        {{/each}}
-                        <tfoot >
-                          <tr >
-                            <td colspan="6 " style="text-align: right;font-weight: 700;">  Total Revenue : 
-                                <span  class="text-danger">{{this.revenue}}</span></td>
                         </tr>
-                        </tfoot>
+
+                        {{/each}}
+                    <tfoot>
+                        <tr>
+                            <td colspan="6 " style="text-align: right;font-weight: 700;"> Total Revenue :
+                                <span class="text-danger">{{this.revenue}}</span>
+                            </td>
+                        </tr>
+                    </tfoot>
 
                     </tbody>
 
                 </table>
             </div>
         </div>
-    
-</section>
+
+    </section>
 </div>
 <script>
     $(document).ready(function () {

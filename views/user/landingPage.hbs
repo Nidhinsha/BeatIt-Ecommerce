@@ -9,33 +9,33 @@
 
 <body>
     <header>
- <div class="300-px-wide">
-        <div id="header-hero">
-           
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                {{#each banner}}
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="{{this.image.[0]}}" class="d-block w-100 " height="700px" alt="...">
-                    </div>
-                    {{!-- <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{this.image.[1]}}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{this.image.[2]}}" class="d-block w-100" alt="...">
-                    </div>
-                </div> --}}
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div class="300-px-wide">
+            <div id="header-hero">
+
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    {{#each banner}}
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="{{this.image.[0]}}" class="d-block w-100 " height="700px" alt="...">
+                        </div>
+                        {{!-- <div class="carousel-item" data-bs-interval="2000">
+                            <img src="{{this.image.[1]}}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{this.image.[2]}}" class="d-block w-100" alt="...">
+                        </div>
+                    </div> --}}
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
             {{!-- <div class="header-bg "> <img
                     src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -66,12 +66,10 @@
                 <a href="#">discover now</a>
             </div>
             <div class="sc-media">
-                <div class="sc-media-bg"> <img
-                        src="{{this.image.[3]}}"
-                        alt="sc-image" /> </div>
+                <div class="sc-media-bg"> <img src="{{this.image.[3]}}" alt="sc-image" /> </div>
             </div>
         </div>
-         {{/each}}
+        {{/each}}
     </section>
     <section id="products">
         <div class="container">
@@ -80,30 +78,34 @@
                 <p>Walk the walk in a pair of stylish sports shoes from Beat it</p>
             </div>
             <div style="width:100%;">
+
                 {{#each randomProducts}}
-                <div class="product product-1 ">
+
+                <div class="product">
 
                     <a href="/product-view/{{this._id}}">
                         <figure> <img src="{{this.image.[0]}}" alt="product-image" style="height: 300px; ">
+
                             <figcaption>{{this.product_name}}</figcaption>
 
                             {{!-- {{#if offer}} --}}
-                            
-                            
+
+
                             {{#if this.currentOffer}}
-                            <figcaption><s class="text-danger">{{this.actualPrice}}</s><span class="text-success">&nbsp;({{this.currentOffer}}% OFF)</span></figcaption>
-                            <figcaption class="text-success">${{this.offerPrice}} </figcaption>   
-                            
+                            <figcaption><s class="text-danger">{{this.actualPrice}}</s><span
+                                    class="text-success">&nbsp;({{this.currentOffer}}% OFF)</span></figcaption>
+                            <figcaption class="text-success">${{this.offerPrice}} </figcaption>
+
                             {{else}}
                             <figcaption> {{this.actualPrice}}</figcaption>
-                            <figcaption class="text-danger">No Offer  </figcaption>
-                           
+                            <figcaption class="text-danger">No Offer </figcaption>
+
                             {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
-                              {{/if}}
+                            {{/if}}
                             {{!-- {{else}} --}}
                             {{!-- <figcaption><s>{{this.actualPrice}}</s></figcaption> --}}
-                            
-                          
+
+
                         </figure>
                     </a>
 
@@ -111,28 +113,24 @@
                 {{/each}}
             </div>
         </div>
+
     </section>
     <section id="collections">
         <div class="container">
             {{#each banner}}
             <div class="c-1">
-                <div class="c-1-image-holder"> <img
-                        src=" {{this.image.[3]}}"
-                        alt="image"> </div>
+                <div class="c-1-image-holder"> <img src=" {{this.image.[3]}}" alt="image"> </div>
             </div>
-           
+
             <div class="c-2">
                 <h2>featured collection</h2>
                 <hr />
-                <div class="c-2-image-holder"> <img class="left"
-                        src="{{this.image.[1]}}"
-                        alt=""><img class="right"
-                        src="{{this.image.[2]}}"
-                        alt=""></div>
+                <div class="c-2-image-holder"> <img class="left" src="{{this.image.[1]}}" alt=""><img class="right"
+                        src="{{this.image.[2]}}" alt=""></div>
                 <p class="button">view all collections</p>
             </div>
         </div>
-{{/each}}
+        {{/each}}
     </section>
 
     <footer>
@@ -151,3 +149,75 @@
 </body>
 
 </html>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+
+
+    .mt-100 {
+        margin-top: 100px
+    }
+
+    .product-wrapper,
+    .product-img {
+        overflow: hidden;
+        position: relative
+    }
+
+    .mb-45 {
+        margin-bottom: 45px
+    }
+
+    .product-action {
+        bottom: 0px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        transition: all 0.6s ease 0s
+    }
+
+    .product-wrapper {
+        border-radius: 10px
+    }
+
+    .product-img>span {
+        background-color: #fff;
+        box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+        color: #333;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        left: 20px;
+        letter-spacing: 1px;
+        padding: 3px 12px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 20px
+    }
+
+    .product-action-style {
+        background-color: #fff;
+        box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+        display: inline-block;
+        padding: 16px 2px 12px
+    }
+
+    .product-action-style>a {
+        color: #979797;
+        line-height: 1;
+        padding: 0 21px;
+        position: relative
+    }
+
+    .product-action-style>a.action-plus {
+        font-size: 18px
+    }
+
+    .product-wrapper:hover .product-action {
+        bottom: 20px;
+        opacity: 1
+    }
+</style>

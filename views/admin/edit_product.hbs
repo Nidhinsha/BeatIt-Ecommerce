@@ -4,8 +4,8 @@
 <div class="container">
 
   <h2>EDIT PRODUCT</h2>
-  <form class=" mt-5  needs-validation" novalidate action="/admin/admin_panel/products/edit_product/{{response._id}}" method="post"
-    enctype="multipart/form-data">
+  <form class=" mt-5  needs-validation" novalidate action="/admin/admin_panel/products/edit_product/{{response._id}}"
+    method="post" enctype="multipart/form-data">
     <!-- 2 column grid layout with text inputs for the first and last names -->
 
     <div class="form-outline mb-4">
@@ -39,7 +39,8 @@
 
     <!-- Text input -->
     <div class="form-outline mb-4">
-      <input type="text" id="form6Example4" class="form-control" name="actualPrice" required value="{{response.actualPrice}}" />
+      <input type="text" id="form6Example4" class="form-control" name="actualPrice" required
+        value="{{response.actualPrice}}" />
       <label class="form-label" for="form6Example4">Actual Price</label>
     </div>
     <!-- Text input -->
@@ -172,7 +173,8 @@
 
     <!-- Message input -->
     <div class="form-outline mb-4">
-      <textarea class="form-control" id="form6Example7" rows="4" required name="description">{{response.description}}</textarea>
+      <textarea class="form-control" id="form6Example7" rows="4" required
+        name="description">{{response.description}}</textarea>
       <label class="form-label" for="form6Example7">Description</label>
     </div>
 
@@ -468,24 +470,24 @@
 
 <script>
 
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict'
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
 </script>

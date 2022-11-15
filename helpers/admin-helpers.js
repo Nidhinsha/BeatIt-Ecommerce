@@ -105,17 +105,17 @@ module.exports = {
     },
 
     //xxxxxxxxxxxxxxxxxxxxxxx UPDATE CATEGORY IN USER PRODUCT TOO.. XXXXXXXXXXXXXXXXXXX
-  
-    updateProductCategory:(categoryData)=>{
+
+    updateProductCategory: (categoryData) => {
         categoryData.inputValue = categoryData.inputValue.toUpperCase()
-        console.log(categoryData,'90909090909090909090909090');
+        console.log(categoryData, '90909090909090909090909090');
         return new Promise(async (resolve, reject) => {
-             await db.get().collection(collection.PRODUCT_COLLECTION).updateMany(
-                { 
+            await db.get().collection(collection.PRODUCT_COLLECTION).updateMany(
+                {
                     category: categoryData.categoryName
-                },{
-                $set:{
-                    category:categoryData.inputValue
+                }, {
+                $set: {
+                    category: categoryData.inputValue
                 }
             })
             resolve()
@@ -173,7 +173,7 @@ module.exports = {
                 resolve(response)
             })
 
-           
+
         })
     },
     //get product to the products from the database
@@ -403,7 +403,7 @@ module.exports = {
     getRevenue: (orderDetails) => {
         return new Promise(async (resolve, reject) => {
             const total = orderDetails.reduce((acc, item) => acc + item.totalAmount, 0)
-           
+
             resolve(total)
         })
 
@@ -524,6 +524,7 @@ module.exports = {
             data.refundAmount = refundAmount?.[0]?.totalAmount
             data.users = await db.get().collection(collection.USER_COLLECTION).find({ date: { $gte: startDate, $lte: endDate } }).count()
             resolve(data)
+            console.log(data, '000000000000000000000000000000000000');
         })
     },
     // ====================== ADD OFFER CATEGORY ==================
@@ -663,7 +664,7 @@ module.exports = {
     //add category offer
     addCategoryOffer: (details) => {
 
-       
+
 
         let category = details.category
         let percentage = Number(details.percentage)
@@ -883,7 +884,7 @@ module.exports = {
     },
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ADD BANNNER XXXXXXXXXXXXXXXXXXXX
     addBanner: (data, urls) => {
-      
+
         return new Promise((resolve, reject) => {
             data.image = urls
             data.time = new Date()
@@ -896,7 +897,7 @@ module.exports = {
     getBanner: () => {
         return new Promise(async (resolve, reject) => {
             let banner = await db.get().collection(collection.BANNER_COLLECTION).find().toArray()
-           
+
             resolve(banner)
         })
     },

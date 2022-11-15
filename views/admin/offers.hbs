@@ -1,10 +1,11 @@
 <section>
-     <div class="container">
+    <div class="container">
 
         <div class="d-flex">
             <div class="me-3 w-100 mt-5">
                 <div class=" d-flex " style="justify-content: end;">
-                    <button class="btn border  btn-outline-dark" data-bs-toggle="modal" data-bs-target="#add-category-offer">
+                    <button class="btn border  btn-outline-dark" data-bs-toggle="modal"
+                        data-bs-target="#add-category-offer">
                         <i class="fas fa-plus me-3"></i>
 
                         Add category offer
@@ -17,7 +18,7 @@
                             <th>Category</th>
                             <th>offer %</th>
                             {{!-- <th>
-                                Expiry 
+                                Expiry
                             </th> --}}
                             <th>Action</th>
                         </tr>
@@ -26,12 +27,13 @@
                         {{#each categoryOffer}}
                         {{!-- {{#if this.result}} --}}
                         {{!-- id="{{this._id}}" --}}
-                        <tr >
+                        <tr>
                             <td>{{this.category}}</td>
                             <td>{{this.categoryOffer}}%</td>
                             {{!-- <td>{{this.expirydate}}</td> --}}
                             <td style="font-size: 16px;">
-                                <a onclick="deleteCategoryOffer('{{this.category}}')" class="btn btn-outline-danger">DELETE</a>
+                                <a onclick="deleteCategoryOffer('{{this.category}}')"
+                                    class="btn btn-outline-danger">DELETE</a>
                             </td>
                         </tr>
                         {{!-- {{/if}} --}}
@@ -41,33 +43,35 @@
             </div>
             <div class="ms-5 w-100 mt-5">
                 <div class=" d-flex " style="justify-content: end;">
-                <button class="btn border  btn-outline-dark" data-bs-toggle="modal" data-bs-target="#add-product-offer">
-                    <i class="fas fa-plus me-3"></i>
-                    Add product offer
-                </button>
+                    <button class="btn border  btn-outline-dark" data-bs-toggle="modal"
+                        data-bs-target="#add-product-offer">
+                        <i class="fas fa-plus me-3"></i>
+                        Add product offer
+                    </button>
                 </div>
                 <table class="table table-striped table-bordered mt-3" style="text-align: center;">
                     <thead>
                         <tr>
                             <th>Products</th>
                             <th>offer %</th>
-                           
+
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {{#each productOffer}}
-                       {{!-- id="{{this._id}}" --}}
+                        {{!-- id="{{this._id}}" --}}
                         <tr>
                             <td>{{this.product_name}}</td>
                             <td>{{this.productOffer}}%</td>
                             {{!-- <td>{{this.expirydate}}</td> --}}
-                            <td style="font-size: 16px;">                               
-                                <a onclick="deleteProductOffer('{{this._id}}')" class="btn btn-outline-danger">DELETE</a>
+                            <td style="font-size: 16px;">
+                                <a onclick="deleteProductOffer('{{this._id}}')"
+                                    class="btn btn-outline-danger">DELETE</a>
                             </td>
                         </tr>
-                    
+
                         {{/each}}
 
                     </tbody>
@@ -86,7 +90,8 @@
                         <div class="order-md-1">
                             <h4 class="mb-3">Add Category Offer</h4>
 
-                            <form class="needs-validation" action="/admin/admin_panel/offers/category-offers"  method="post">
+                            <form class="needs-validation" action="/admin/admin_panel/offers/category-offers"
+                                method="post">
                                 <div class="form-group mb-3">
                                     {{!-- <label for="exampleFormControlSelect1">Example select</label> --}}
                                     <select class="form-control bg-light" id="category" name="category" required>
@@ -129,7 +134,8 @@
                         <div class="order-md-1">
                             <h4 class="mb-3">Add Product Offer</h4>
 
-                            <form class="needs-validation" method="post" action="/admin/admin_panel/offers/product-offers" >
+                            <form class="needs-validation" method="post"
+                                action="/admin/admin_panel/offers/product-offers">
                                 <div class="form-group mb-3">
                                     {{!-- <label for="exampleFormControlSelect1">Example select</label> --}}
                                     <select class="form-control bg-light" id="products" name="product" required>
@@ -140,8 +146,8 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control bg-light" id="percentage"  required
-                                        placeholder="Enter offer in percentage" name="percentage" value="" >
+                                    <input type="text" class="form-control bg-light" id="percentage" required
+                                        placeholder="Enter offer in percentage" name="percentage" value="">
                                     <div class="invalid-feedback"> Please enter product offer. </div>
                                 </div>
                                 {{!-- <div class="mb-3">
@@ -162,5 +168,3 @@
         </div>
     </div>
 </section>
-
-

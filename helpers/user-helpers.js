@@ -532,17 +532,17 @@ module.exports = {
     },
 
     //xxxxxxxxxxxxxxxxxxxxxxxx to return  the orders from the user Side  xxxxxxxxxxxxxxxx
-    returnOrder: (data,userId,products) => {
-       
+    returnOrder: (data, userId, products) => {
+
         // console.log(data.orderId,data.proId,userId,products + 'order id is coming welluuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
         return new Promise((resolve, reject) => {
             let dateStatus = new Date()
             db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: objId(data.orderId), 'products.item': objId(data.orderId) },
-                { $set: { 'products.$.status': 'return' } }).then(() => {
+                { $set: { 'products.$.status': 'returned' } }).then(() => {
                     resolve()
                 })
-                db.get().collection(collection.WALLET_COLLECTION).updateOne({userId:objId(userId)},{ $inc: { walletBalace: products.offerPrice }})
-                
+            db.get().collection(collection.WALLET_COLLECTION).updateOne({ userId: objId(userId) }, { $inc: { walletBalace: products.offerPrice } })
+
         })
     },
 
@@ -862,6 +862,7 @@ module.exports = {
     // ================================================================= CHANGE THE PAYMENT STATUS ==========================
 
     changePaymentStatus: (orderId, userId, products) => {
+        console.log(products, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
 
         return new Promise((resolve, reject) => {
             products.forEach(async element => {

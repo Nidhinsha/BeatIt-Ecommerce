@@ -13,7 +13,7 @@
   <a href="/addressBook" class="btn  btn-outline-dark ">Address</a>
   <a href="/orders" class="btn   btn-outline-dark ">Orders</a>
   <a href="/wishlist" class="btn  btn-outline-dark ">Wishlist</a>
-     <a href="/wallet" class="btn  btn-outline-dark ">wallet</a>
+  <a href="/wallet" class="btn  btn-outline-dark ">wallet</a>
   {{!-- <button id="daily" onclick="salesReport(1,'daily')">Daily</button>
   <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
   <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
@@ -88,9 +88,8 @@
 
                       {{#ifCheck status 'delivered'}}
                       {{#ifReturn this.statusUpdateDate}}
-                      <button id="{{this.item}},{{this._id}} " 
-                        class="btn btn-outline-info" onclick="returnOrder('{{this._id}}','{{this.item}}','returned')"
-                        class="btn btn-danger">Return
+                      <button id="{{this.item}},{{this._id}} " class="btn btn-outline-info"
+                        onclick="returnOrder('{{this._id}}','{{this.item}}','returned')" class="btn btn-danger">Return
                       </button>
                       {{/ifReturn}}
                       {{/ifCheck}}
@@ -138,20 +137,27 @@
       </div>
       <div class="modal-body">
         <form action="">
-        <div class="input-group flex-nowrap">
-          
+          <div class="input-group flex-nowrap">
+
             <span class="input-group-text" id="addon-wrapping">Reason</span>
-          <input type="text" class="form-control" placeholder="Reason for the Return" aria-label=""
-            aria-describedby="addon-wrapping">
-          
-          
-        </div>
+            <input type="text" class="form-control" placeholder="Reason for the Return" aria-label=""
+              aria-describedby="addon-wrapping">
+
+
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        
+
         <button type="submit" class="btn btn-outline-dark">Return Product</button>
       </div>
     </div>
   </div>
 </div>
+<footer>
+  <p class="copy-right"><img
+      src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
+      alt="copy right image" /> 2022 all right recived </p>
+  <p>privacy policy</p>
+  <p>license</p>
+</footer>

@@ -12,11 +12,11 @@
               <div class="card-body p-4 p-lg-5 text-black">
 
                 <form onsubmit="return signinValidate()" action="/admin/admin_login" method="post">
-                    <p class="error">
-                                        {{#if adminChecker}}
-                                        {{adminChecker}}
-                                        {{/if}}
-                                    </p>
+                  <p class="error">
+                    {{#if adminChecker}}
+                    {{adminChecker}}
+                    {{/if}}
+                  </p>
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                     <span class="h1 fw-bold mb-0">Admin</span>
@@ -25,14 +25,14 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <div class="form-outline mb-4">
-                    <input  type="email" id="email" class="form-control form-control-lg" name="email" />
-                     <p class="error"></p>
+                    <input type="email" id="email" class="form-control form-control-lg" name="email" />
+                    <p class="error"></p>
                     <label class="form-label" for="form2Example17">Email address</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control form-control-lg" />
-                           <p class="error"></p>
+                    <p class="error"></p>
                     <label class="form-label" for="form2Example27">Password</label>
                   </div>
 
@@ -40,7 +40,7 @@
                     <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                   </div>
 
-                  
+
                 </form>
 
               </div>
