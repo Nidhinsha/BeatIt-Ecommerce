@@ -1065,6 +1065,20 @@ module.exports = {
             resolve(random)
             console.log(random, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
         })
+    },
+    //xxxxxxxxxxxxxxxxxx  DISPLAY HOT DEALS FROM BEAT IT XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    hotDeals:()=>{
+        return new Promise(async (resolve, reject) => {
+            let hotDeals = await db.get().collection(collection.PRODUCT_COLLECTION).find().sort({date:-1}).limit(4).toArray()
+            resolve(hotDeals)
+        })
+    },
+    //xxxxxxxxxxxxxxxx    DISPLAY RELEATED PRODUCT IN PRODUCT VIEW PAGE XXXXXXXXXXXXXXXX
+    relatedProduct:()=>{
+        return new Promise(async (resolve, reject) => {
+            let relatedProduct = await db.get().collection(collection.PRODUCT_COLLECTION).find().sort({date:-1}).limit(4).toArray()
+            resolve(relatedProduct)
+        })
     }
 
 }

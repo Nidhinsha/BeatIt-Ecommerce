@@ -158,7 +158,8 @@ module.exports = {
                 },
                 {
                     $set: {
-                        product: updatedData.product,
+                        product_name:updatedData.product_name,
+                        // product: updatedData.product,
                         brand: updatedData.brand,
                         stock: updatedData.stock,
                         actualPrice: updatedData.actualPrice,

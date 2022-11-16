@@ -175,9 +175,10 @@ router.post('/admin_panel/products/add_product', upload.fields([
 
 
 //edit
-router.get('/admin_panel/products/edit_product/:id', verifyLogin, (req, res) => {
+router.get('/admin_panel/products/edit_product/:id', verifyLogin, async (req, res) => {
+    let category = await adminHelpers.getCategory()
     adminHelpers.getProductById(req.params.id).then((response) => {
-        res.render('admin/edit_product', { response, admin: true })
+        res.render('admin/edit_product', { response,category, admin: true })
     })
 })
 

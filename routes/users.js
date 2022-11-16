@@ -58,11 +58,12 @@ router.get('/', async (req, res) => {
     console.log(cartCount);
   }
   let randomProducts = await userHelpers.randomProducts()
+  let hotDeals = await userHelpers.hotDeals()
   let category = await userHelpers.getCategory();
   let banner = await userHelpers.getBanner()
   // console.log(banner,'bbbbbbbbbbbbbbbbbbbbbbb');
   // userHelpers.getProduct().then((products) => {
-  res.render('user/landingPage', { randomProducts, userName, cartCount, category, user: req.session.user, banner, logout: !req.session.loggedIn })
+  res.render('user/landingPage', { randomProducts,hotDeals, userName, cartCount, category, user: req.session.user, banner, logout: !req.session.loggedIn })
   // })
 })
 
@@ -179,10 +180,12 @@ router.get('/product-view/:id', async (req, res) => {
     cartCount = await userHelpers.getCartCount(req.session.user._id)
     console.log(cartCount);
   }
-  userHelpers.getProductView(req.params.id).then((products) => {
+  let relatedProduct = await userHelpers.relatedProduct()
+  await userHelpers.getProductView(req.params.id).then((products) => {
     console.log(products, 'ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp');
 
-    res.render('user/product-view', { products, user: req.session.user, userName, cartCount, logout: !req.session.loggedIn })
+ 
+    res.render('user/product-view', { products,relatedProduct, user: req.session.user, userName, cartCount, logout: !req.session.loggedIn })
   })
 })
 
@@ -612,11 +615,7 @@ router.get('/search', async (req, res) => {
 })
 
 router.get('/pick-address/:addressId', (req, res) => {
-  console.log('22222222222222222222222222');
   userHelpers.getOrderAddress(req.session.user._id, req.params.addressId).then((address) => {
-    console.log(req.params.addressId, 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
-    console.log(req.session.user._id, 'cccccccccccccccccccccccccccccccccc');
-    console.log(address, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     res.json(address)
   })
 })

@@ -24,11 +24,6 @@
 
 
 
-    <!-- Text input -->
-    {{!-- <div class="form-outline mb-4">
-      <input type="number" id="form6Example3" class="form-control" name="quantity" value="{{response.quantity}}" />
-      <label class="form-label" for="form6Example3">Quantity </label>
-    </div> --}}
 
     <!-- Text input -->
     <div class="form-outline mb-4">
@@ -43,17 +38,7 @@
         value="{{response.actualPrice}}" />
       <label class="form-label" for="form6Example4">Actual Price</label>
     </div>
-    <!-- Text input -->
-    {{!-- <div class="form-outline mb-4">
-      <input type="text" id="form6Example4" class="form-control" name="offerPrice" value="{{response.offerPrice}}" />
-      <label class="form-label" for="form6Example4">Offer Price</label>
-    </div> --}}
-
-    <!-- Email input -->
-    {{!-- <div class="form-outline mb-4">
-      <input type="number" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Offer Price</label>
-    </div> --}}
+   
 
     <!-- category input -->
     <div class="form-outline mb-4">
@@ -61,28 +46,18 @@
       <select name="category" class="form-select" required aria-label="Default select example">
         {{!-- <select name="category" id=""> --}}
 
-          <option selected="true" value="value=" {{response.category}}"" disabled="disabled">select category</option>
-
+          <option selected="true" value=" {{response.category}}" disabled="disabled">select category</option>
           <option value="{{response.category}}">{{response.category}}</option>
+        
           {{#each category}}
+          
           <option value="{{this.category}}">{{this.category}}</option>
           {{/each}}
 
         </select>
     </div>
 
-    <!-- Email input -->
-    {{!-- <div class="form-outline mb-4">
-      <label for="">PAYMENT</label>
-      <select name="payment" class="form-select" aria-label="Default select example">
-        <select name="category" id="">
-
-          <option selected="true" disabled="disabled">select Payment</option>
-          {{#each paymentOption}}
-          <option value="{{this._id}}">{{this.payment}}</option>
-          {{/each}}
-        </select>
-    </div> --}}
+  
     <!-- Email input -->
     <div class="form-outline mb-4">
 

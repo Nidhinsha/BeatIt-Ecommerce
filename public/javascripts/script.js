@@ -194,7 +194,7 @@ function otpValidate() {
 
 $(document).ready(function () {
     $(".block__pic").imagezoomsl({
-        zoomrange: [6, 6]
+        zoomrange: [2, 2]
     });
 });
 

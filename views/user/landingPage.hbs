@@ -104,11 +104,46 @@
                             {{/if}}
                             {{!-- {{else}} --}}
                             {{!-- <figcaption><s>{{this.actualPrice}}</s></figcaption> --}}
-
-
                         </figure>
                     </a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="container">
+            <div class="products-header">
+                <h2><span class="text-danger"> Hot</span> Deals</h2>
+                <p>“You can wear anything as long as you put a nice pair of shoes with it.” <br> –Taylor Momsen</p>
+            </div>
+            <div style="width:100%;">
 
+                {{#each hotDeals}}
+
+                <div class="product">
+
+                    <a href="/product-view/{{this._id}}">
+                        <figure> <img src="{{this.image.[0]}}" alt="product-image" style="height: 300px; ">
+
+                            <figcaption>{{this.product_name}}</figcaption>
+
+                            {{!-- {{#if offer}} --}}
+
+
+                            {{#if this.currentOffer}}
+                            <figcaption><s class="text-danger">{{this.actualPrice}}</s><span
+                                    class="text-success">&nbsp;({{this.currentOffer}}% OFF)</span></figcaption>
+                            <figcaption class="text-success">${{this.offerPrice}} </figcaption>
+
+                            {{else}}
+                            <figcaption> {{this.actualPrice}}</figcaption>
+                            <figcaption class="text-danger">No Offer </figcaption>
+
+                            {{!-- <figcaption> ₹{{this.totalPrice}}</figcaption> --}}
+                            {{/if}}
+                            {{!-- {{else}} --}}
+                            {{!-- <figcaption><s>{{this.actualPrice}}</s></figcaption> --}}
+                        </figure>
+                    </a>
                 </div>
                 {{/each}}
             </div>
@@ -127,7 +162,8 @@
                 <hr />
                 <div class="c-2-image-holder"> <img class="left" src="{{this.image.[1]}}" alt=""><img class="right"
                         src="{{this.image.[2]}}" alt=""></div>
-                <p class="button">view all collections</p>
+                     
+                <p class="button" id=""><a href="#collections" class="text-dark"> view all collections</a></p>
             </div>
         </div>
         {{/each}}
