@@ -214,7 +214,7 @@ module.exports = {
                 {
                     $pull: { products: { item: objId(proId) } }
                 }
-            ).then(() => {
+            ).then((response) => {
                 resolve(response)
             })
         })
