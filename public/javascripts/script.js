@@ -1,6 +1,7 @@
 
 $("#signup-form").submit((e) => {
     e.preventDefault();
+    console.log(  $('#signup-form').serialize(),'lllll');
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
     // function signUpValidate() {
     // const userName=document.getElementById('username')
