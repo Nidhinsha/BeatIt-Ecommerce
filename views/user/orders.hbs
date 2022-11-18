@@ -1,12 +1,5 @@
 {{!-- ===================================nav bar ================================ --}}
-{{!--
-<nav class="nav nav-borders" style="justify-content: space-evenly;">
-  <a class="nav-link" style="color: black; font-weight: 400;" href="/profile">Profile</a>
-  <a class="nav-link" style="color: black; font-weight: 400;" href="/addressBook">Address</a>
-  <a class="nav-link" style="color: black; font-weight: 400;" href="/orders">My Orders</a>
-  <a class="nav-link" style="color: black; font-weight: 400;" href="/wishlist">My Wishlist</a>
-</nav>
-<hr> --}}
+
 
 <div class="btn-group btn-group-toggle w-25  mt-3 ms-5 mb-2 sales ">
   <a href="/profile" class="btn   btn-outline-dark " style="border-radius: 3px;"> Profile</a>
@@ -14,14 +7,10 @@
   <a href="/orders" class="btn   btn-outline-dark ">Orders</a>
   <a href="/wishlist" class="btn  btn-outline-dark ">Wishlist</a>
   <a href="/wallet" class="btn  btn-outline-dark ">wallet</a>
-  {{!-- <button id="daily" onclick="salesReport(1,'daily')">Daily</button>
-  <button id="weekly" class="btn btn-dark " onclick="salesReport(7,'weekly')">Weekly</button>
-  <button id="monthly" class="btn btn-dark " onclick="salesReport(30,'monthly')">Monthly</button>
-  <button id="yearly" class="btn btn-dark " onclick="salesReport(365,'yearly')">Yearly</button>
-</div> --}}
-<hr class="mt-1">
-</div>
 
+  <hr class="mt-1">
+</div>
+{{#if response}}
 <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -53,9 +42,7 @@
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">{{this.product.category}}</p>
                   </div>
-                  {{!-- <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                    <p class="text-muted mb-0 small">{{this.product.description}}</p>
-                  </div> --}}
+
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">{{this.quantity}}</p>
                   </div>
@@ -124,8 +111,14 @@
           </div>
         </div>
       </div>
+      {{else}}
+      <div class="img-fluid d-flex justify-content-center">
+        <img src="https://res.cloudinary.com/driuxmoax/image/upload/v1668745630/beatitImage/order3_tas5mv.webp" alt="">
+      </div>
 </section>
 
+
+{{/if}}
 
 <!-- Modal -->
 <div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,10 +147,3 @@
     </div>
   </div>
 </div>
-<footer>
-  <p class="copy-right"><img
-      src="https://res.cloudinary.com/de8cuyd0n/image/upload/v1520412543/E-commerce%20landing%20page/icons/copy-right-img_1x.png"
-      alt="copy right image" /> 2022 all right recived </p>
-  <p>privacy policy</p>
-  <p>license</p>
-</footer>

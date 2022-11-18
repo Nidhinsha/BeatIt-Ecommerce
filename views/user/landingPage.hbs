@@ -18,13 +18,13 @@
                         <div class="carousel-item active" data-bs-interval="10000">
                             <img src="{{this.image.[0]}}" class="d-block w-100 " height="700px" alt="...">
                         </div>
-                        {{!-- <div class="carousel-item" data-bs-interval="2000">
+                        <div class="carousel-item" data-bs-interval="2000">
                             <img src="{{this.image.[1]}}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="{{this.image.[2]}}" class="d-block w-100" alt="...">
                         </div>
-                    </div> --}}
+                    
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -66,7 +66,9 @@
                 <a href="#">discover now</a>
             </div>
             <div class="sc-media">
-                <div class="sc-media-bg"> <img src="{{this.image.[3]}}" alt="sc-image" /> </div>
+                <div class="sc-media-bg"> <img
+                        src="https://res.cloudinary.com/driuxmoax/image/upload/v1668744451/beatitImage/irene-kredenets-dwKiHoqqxk8-unsplash_lxtixr.jpg"
+                        alt="sc-image" /> </div>
             </div>
         </div>
         {{/each}}
@@ -152,21 +154,26 @@
     </section>
     <section id="collections">
         <div class="container">
-            {{#each banner}}
+            {{!-- {{#each banner}} --}}
             <div class="c-1">
-                <div class="c-1-image-holder"> <img src=" {{this.image.[3]}}" alt="image"> </div>
+                <div class="c-1-image-holder"> <img
+                        src="https://res.cloudinary.com/driuxmoax/image/upload/v1668744451/beatitImage/irene-kredenets-dwKiHoqqxk8-unsplash_lxtixr.jpg"
+                        alt="image"> </div>
             </div>
 
             <div class="c-2">
                 <h2>featured collection</h2>
                 <hr />
-                <div class="c-2-image-holder"> <img class="left" src="{{this.image.[1]}}" alt=""><img class="right"
-                        src="{{this.image.[2]}}" alt=""></div>
-                     
+                <div class="c-2-image-holder"> <img class="left"
+                        src="https://res.cloudinary.com/driuxmoax/image/upload/v1668744021/beatitImage/andres-jasso-PqbL_mxmaUE-unsplash_zqehz3.jpg"
+                        alt=""><img class="right"
+                        src="https://res.cloudinary.com/driuxmoax/image/upload/v1668744027/beatitImage/anubhav-arora-g1vk_Bef2Xk-unsplash_hhaz3o.jpg"
+                        alt=""></div>
+
                 <p class="button" id=""><a href="#collections" class="text-dark"> view all collections</a></p>
             </div>
         </div>
-        {{/each}}
+        {{!-- {{/each}} --}}
     </section>
 
     <footer>
