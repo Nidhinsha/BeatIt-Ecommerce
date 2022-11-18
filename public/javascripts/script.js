@@ -5,10 +5,10 @@ $("#signup-form").submit((e) => {
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
     // function signUpValidate() {
     // const userName=document.getElementById('username')
-    const number = document.getElementById('number')
-    const email = document.getElementById('email')
-    const password = document.getElementById('password')
-    const repassword = document.getElementById('repassword')
+    const number = document.getElementById('numberS')
+    const email = document.getElementById('emailS')
+    const password = document.getElementById('passwordS')
+    const repassword = document.getElementById('repasswordS')
     const error = document.getElementsByClassName('invalid-feedback')
 
 
