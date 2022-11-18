@@ -28,6 +28,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let emailCheck = await db.get().collection(collection.USER_COLLECTION).findOne({ email: userData.email })
             if (emailCheck == null) {
+                
                 userData.password = await bcrypt.hash(userData.password, 10)
                 userData.status = true;
                 userData.date = new Date()

@@ -60,6 +60,7 @@ $("#signup-form").submit((e) => {
             if (response.status) {
                 // if (isConfirm) {
                 // location.reload()
+                console.log('signup working');
                 $('#signUpModal').modal('hide');
                 $('#signInModal').modal('show');
 
