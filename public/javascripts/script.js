@@ -56,7 +56,7 @@ $("#signup-form").submit((e) => {
     $.ajax({
         url: '/user_registration',
         type: 'post',
-        data: $('#signup-form').serialize(),
+        data: "fhgfhgfhf",
         success: (response) => {
             if (response.status) {
                 // if (isConfirm) {
