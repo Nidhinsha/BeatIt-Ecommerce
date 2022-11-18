@@ -79,6 +79,74 @@
 
 
 {{#if logout}}
+ {{!-- MODAL FOR SIGN --}}
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <section>
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center ">
+
+            <div class="card bg-dark text-white" style="border-radius: 0rem;">
+              <div class="card-body p-5 text-center">
+                <form id="login-form" method="post">
+                  <div class="invalid-feedback ms-5 d-block">
+
+                  </div>
+                  {{#if loginChecker}}
+                  <div>{{loginChecker}}</div>
+                  {{/if}}
+                  <div class="mb-md-5 mt-md-4 pb-5">
+
+                    <h2 class="fw-bold mb-2 text-uppercase text-white">Login</h2>
+                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                    <div class="invalid-feedback ms-5 d-block"></div>
+                    <div class="form-outline form-white mb-4">
+                      <input type="email" class="form-control form-control-lg" id="email" placeholder="Your Email"
+                        name="email" />
+                      <label class="form-label" for="typeEmailX">Email</label>
+                    </div>
+
+                    <div class="invalid-feedback ms-5 d-block"></div>
+
+                    <div class="form-outline form-white mb-4">
+                      <input type="password" class="form-control form-control-lg" id="password" placeholder="Password"
+                        name="password" />
+                      <label class="form-label" for="typePasswordX">Password</label>
+
+                    </div>
+
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" data-bs-toggle="modal" href="#otpNumberModal"
+                        role="button">Login With OTP</a>
+                    </p>
+
+
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+
+
+                  </div>
+
+
+                  <div>
+                    <p class="mb-0 text-white">Don't have an account? <a data-bs-toggle="modal"
+                        data-bs-target="#signUpModal" data-bs-whatever="@mdo" aria-labelledby="exampleModalLabel"
+                        class="text-white-50 fw-bold">Sign
+                        Up</a>
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</div>
 {{!-- MODAL FOR SIGN UP --}}
 <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -177,74 +245,7 @@
   </div>
 </div>
 
- {{!-- MODAL FOR SIGN --}}
-<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <section>
-        <div class="container h-100">
-          <div class="row d-flex justify-content-center align-items-center ">
 
-            <div class="card bg-dark text-white" style="border-radius: 0rem;">
-              <div class="card-body p-5 text-center">
-                <form id="login-form" method="post">
-                  <div class="invalid-feedback ms-5 d-block">
-
-                  </div>
-                  {{#if loginChecker}}
-                  <div>{{loginChecker}}</div>
-                  {{/if}}
-                  <div class="mb-md-5 mt-md-4 pb-5">
-
-                    <h2 class="fw-bold mb-2 text-uppercase text-white">Login</h2>
-                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
-                    <div class="invalid-feedback ms-5 d-block"></div>
-                    <div class="form-outline form-white mb-4">
-                      <input type="email" class="form-control form-control-lg" id="email" placeholder="Your Email"
-                        name="email" />
-                      <label class="form-label" for="typeEmailX">Email</label>
-                    </div>
-
-                    <div class="invalid-feedback ms-5 d-block"></div>
-
-                    <div class="form-outline form-white mb-4">
-                      <input type="password" class="form-control form-control-lg" id="password" placeholder="Password"
-                        name="password" />
-                      <label class="form-label" for="typePasswordX">Password</label>
-
-                    </div>
-
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" data-bs-toggle="modal" href="#otpNumberModal"
-                        role="button">Login With OTP</a>
-                    </p>
-
-
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
-
-
-                  </div>
-
-
-                  <div>
-                    <p class="mb-0 text-white">Don't have an account? <a data-bs-toggle="modal"
-                        data-bs-target="#signUpModal" data-bs-whatever="@mdo" aria-labelledby="exampleModalLabel"
-                        class="text-white-50 fw-bold">Sign
-                        Up</a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </div>
-</div>
 
 {{!-- xxxxxxxxxxxxxx MODAL FOR SIGN UP XXXXXXXXXXXXXXXXXX --}}
 

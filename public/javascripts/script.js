@@ -62,9 +62,9 @@ $("#signup-form").submit((e) => {
                 // if (isConfirm) {
                 // location.reload()
                 console.log('signup working');
-                location.reload()
-                // $('#signUpModal').modal('hide');
-                // $('#signInModal').modal('show');
+                
+                $('#signUpModal').modal('hide');
+                $('#signInModal').modal('show');
 
                 // }
             } else {
