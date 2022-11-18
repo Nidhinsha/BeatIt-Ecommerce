@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
 //signup
 
 
-router.post('/user_registration', function (req, res) {
+router.post('/modal-signUp', function (req, res) {
   userHelpers.userSignup(req.body).then((response) => {
     req.session.loggedIn = true;
     req.session.user = response.user;

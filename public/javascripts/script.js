@@ -54,16 +54,17 @@ $("#signup-form").submit((e) => {
         return false;
     }
     $.ajax({
-        url: '/user_registration',
+        url: '/modal-signUp',
         type: 'post',
-        data: "fhgfhgfhf",
+        data: $('#signup-form').serialize(),
         success: (response) => {
             if (response.status) {
                 // if (isConfirm) {
                 // location.reload()
                 console.log('signup working');
-                $('#signUpModal').modal('hide');
-                $('#signInModal').modal('show');
+                location.reload()
+                // $('#signUpModal').modal('hide');
+                // $('#signInModal').modal('show');
 
                 // }
             } else {
