@@ -100,7 +100,6 @@ router.post('/modal-login', (req, res) => {
 router.post('/verifyNumber', (req, res) => {
   userHelpers.verifyNumber(req.body.phoneNumber).then((response) => {
     req.session.user = response
-    ///////////////////////////////////////////
 
     client.verify
       .services(process.env.SERVICE_ID)
@@ -116,12 +115,10 @@ router.post('/verifyNumber', (req, res) => {
 
         console.log(err);
       })
-    //////////////////////////////
+
     res.json(response)
-    // console.log(response,'oooooooooooooooooo');
   }).catch((response) => {
 
-    // console.log(response,'ffffffffffffffffffffffffff');
     res.json({ msg: "Invalid Phone Number" })
   })
 })
@@ -129,7 +126,6 @@ router.post('/verifyNumber', (req, res) => {
 //xxxxxxxxxxxxx OTP LOGIN xxxxxxxxxxxxxxxxxxxxx
 router.post('/loginOtp', (req, res) => {
 
-  //////////////////////////////////////////// 
   client.verify
     .services(process.env.SERVICE_ID)
     .verificationChecks
@@ -298,7 +294,7 @@ router.post('/place-order', verifyLogin, async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:3000/success",
+          "return_url": "http://beatit.online/success",
           "cancel_url": "http://cancel.url"
         },
         "transactions": [{
@@ -619,8 +615,6 @@ router.get('/pick-address/:addressId', (req, res) => {
     res.json(address)
   })
 })
-
-
 
 
 // p-test 

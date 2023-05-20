@@ -2,8 +2,9 @@
   "name": "ecommerce-project-1",
   "version": "0.0.0",
   "private": true,
+ 
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "autocode-js": "^0.21.1",
