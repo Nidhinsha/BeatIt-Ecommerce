@@ -2,7 +2,6 @@
   "name": "ecommerce-project-1",
   "version": "0.0.0",
   "private": true,
- 
   "scripts": {
     "start": "nodemon ./bin/www"
   },
@@ -29,5 +28,8 @@
     "paypal-rest-sdk": "^1.8.1",
     "razorpay": "^2.8.3",
     "twilio": "^3.82.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
